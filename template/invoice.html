@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Example 1</title>
+    <style>
+        .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  a {
+    color: #5D6975;
+    text-decoration: underline;
+  }
+  
+  body {
+    position: relative;
+    width: 21cm;  
+    height: 29.7cm; 
+    margin: 0 auto; 
+    color: #001028;
+    padding: 10px;
+    background: #FFFFFF; 
+    font-family: Arial, sans-serif; 
+    font-size: 12px; 
+    font-family: Arial;
+  }
+  
+  header {
+    padding: 10px 0;
+    margin-bottom: 30px;
+  }
+  
+  #logo {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  #logo img {
+    width: 90px;
+  }
+  
+  h1 {
+    border-top: 1px solid  #5D6975;
+    border-bottom: 1px solid  #5D6975;
+    color: #5D6975;
+    font-size: 2.4em;
+    line-height: 1.4em;
+    font-weight: normal;
+    text-align: center;
+    margin: 0 0 20px 0;
+    background: url(dimension.png);
+  }
+  
+  #project {
+    float: left;
+  }
+  
+  #project span {
+    color: #5D6975;
+    /* text-align: right; */
+    width: 52px;
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 1em;
+  }
+  
+  #company {
+    float: right;
+    text-align: right;
+  }
+  
+  #project div,
+  #company div {
+    white-space: nowrap;        
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+  }
+  
+  table tr:nth-child(2n-1) td {
+    background: #F5F5F5;
+    
+  }
+  
+  table th,
+  table td {
+    text-align: center;
+  }
+  
+  table th {
+    padding: 5px 20px;
+    color: #5D6975;
+    border-bottom: 1px solid #C1CED9;
+    white-space: nowrap;        
+    font-weight: normal;
+  }
+  
+  table .service,
+  table .desc {
+    text-align: left;
+  }
+  
+  table td {
+    padding: 20px;
+    text-align: right;
+  }
+  
+  table td.service,
+  table td.desc {
+    vertical-align: top;
+  }
+  
+  table td.unit,
+  table td.qty,
+  table td.total {
+    font-size: 1.2em;
+  }
+  
+  table td.grand {
+    border-top: 1px solid #5D6975;;
+  }
+  
+  #notices .notice {
+    color: #5D6975;
+    font-size: 1.2em;
+  }
+  
+  footer {
+    color: #5D6975;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #C1CED9;
+    padding: 8px 0;
+    text-align: center;
+  }
+    </style>
+  </head>
+  <body  style="border-style: solid">
+    <header class="clearfix">
+      <div id="logo">
+        <img src="logo.png">
+      </div>
+      <h1>INVOICE {{invoice}}</h1>
+      <h2 style="text-align: center;">MAHARAJA MARRIAGE HALL BOOKING RECIEPT</h2>
+      <div id="company" class="clearfix">
+        <div style="font-weight: bold;">GST #: 29AAACC1206D2ZB</div>
+      </div>
+      <div >
+        <div id="project" >
+          <div><span>Name: </span><span style="margin-left:-20px;font-weight: bold;"> {{firstName}} {{lastName}}</span></div>
+          <div><span>Mobile: </span><span style="margin-left:-20px;font-weight: bold;">{{phoneNumber}}</span></div>
+          <div><span>Address: </span><span style="margin-left:-11px;font-weight: bold;">{{address}}</span></div>
+          <div><span>Booking Date: </span><span style="margin-left:16px;font-weight: bold;">{{bookingDate}}</span></div>
+        </div>
+      </div>
+    
+    </header>
+    <hr>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">Sl.No</th>
+            <th class="desc">Service</th>
+            <th style="text-align: left;">PRICE</th>
+            <th></th>
+            <th style="text-align: right;">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#if facAvail}}
+          {{#each facilities}}
+          <tr>
+            <td class="service">1</td>
+            <td class="desc">{{label}}</td>
+            <td class="unit" style="text-align: left;">₹{{price}}</td>
+            <td class="qty"></td>
+            <td class="total">₹{{price}}</td>
+          </tr>
+          {{/each}}
+          {{/if}}
+          {{#if notfacAvail}}
+          <tr>
+            <td class="service">1</td>
+            <td class="desc">{{requirements}}</td>
+            <td class="unit" style="text-align: left;">₹{{finalAmount}}</td>
+            <td class="qty"></td>
+            <td class="total">₹{{finalAmount}}</td>
+          </tr>
+          {{/if}}
+          <tr>
+            <td colspan="4" class="grand total">Final Amount</td>
+            <td class="grand total">₹{{finalAmount}}</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="grand total">Booking Amount</td>
+            <td class="grand total">₹{{BookingAmount}}</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="grand total">Balanced Amount</td>
+            <td class="grand total">₹{{balancedAmount}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      {{#if showFeature}}
+      <div id="notices">
+        <div>Facilites:</div>
+        <div class="notice">
+            <ul>
+                <li>Room For Bride and Groom (AC)-01</li>
+                <li>Mandap Hall - 01</li>
+                <li>Mini Hall - 01</li>
+                <li>VIP Room - 01</li>
+                <li>Jaimala Stage - 01</li>
+                <li>Stereo Sound System - 01 </li>
+                <li>Sofa</li>
+                <li>Buffet Set</li>
+                <li>Coffee Machine</li>
+                <li>Gupchup Pani Puri Stall</li>
+                <li>Deg</li>
+                <li>Kadhai</li>
+                <li>Tawa</li>
+                <li>Gamla</li>
+                <li>Paraat</li>
+                <li>Generator with Disel</li>
+                <li>Gas Stove</li>
+                <li>Open Lawn </li>
+              </ul>  
+        </div>
+      </div>
+      {{/if}}
+    </main>
+    <footer>
+      Invoice was created on a computer and is valid without the signature and seal.
+    </footer>
+  </body>
+</html>

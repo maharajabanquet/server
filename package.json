@@ -1,0 +1,33 @@
+{
+  "name": "maharaja-server",
+  "version": "1.0.0",
+  "description": "api service for communincating with client",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Ankit",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "html-pdf": "^2.2.0",
+    "invoice-generator": "^0.3.0",
+    "invoice-number": "^1.0.6",
+    "lodash": "^4.17.21",
+    "mongodb": "^4.2.1",
+    "mongoose": "^6.0.14",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-paginate": "^5.0.3",
+    "nodemon": "^2.0.15",
+    "puppeteer": "12.0.1",
+    "short-uuid": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/express-handlebars": "^6.0.0",
+    "install": "^0.13.0"
+  }
+}
