@@ -26,6 +26,8 @@ const bookingRoutes = require('./routes/booking');
 const configRoutes = require('./routes/config');
 const invoiceRoutes = require('./routes/invoice_generator');
 const employeeRoutes = require('./routes/employee');
+const authRoutes = require('./routes/auth');
+
 
 
 
@@ -34,6 +36,7 @@ app.use('/api/v1/booking', bookingRoutes);
 app.use('/api/v1/config', configRoutes);
 app.use('/api/v1/invoice', invoiceRoutes);
 app.use('/api/v1/employee', employeeRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 
 
@@ -43,7 +46,6 @@ app.use('/api/v1/employee', employeeRoutes);
 mongoose.connect(
     process.env.DB_CONNECTION
     , (e) => {
-      console.log(e)
     console.log('Connected to Database ' + process.env.DB_CONNECTION);
 });
 

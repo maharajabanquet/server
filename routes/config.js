@@ -6,6 +6,7 @@ var _ = require('lodash');
 
 router.get('/get-config', (req, res) => {
     Config.findOne({}, function(err, result) {
+        console.log(result);
         res.status(200).json({'config': result});
     })
 })
