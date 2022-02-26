@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 
 
 app.use(express.static(process.cwd()+"/dist/maharaja/"));
-app.get('/*', (req,res) => {
+app.get('/', (req,res) => {
     res.sendFile(process.cwd()+"/dist/maharaja/index.html")
   });
 
