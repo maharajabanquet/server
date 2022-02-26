@@ -15,10 +15,6 @@ app.use(function(req, res, next) {
 
 
 
-app.use(express.static(process.cwd()+"/dist/maharaja/"));
-app.get('*', (req,res) => {
-    res.sendFile(process.cwd()+"/dist/maharaja/index.html")
-  });
 
 // Import Routes
 const enquiryRoutes = require('./routes/enquiry');
@@ -39,6 +35,10 @@ app.use('/api/v1/employee', employeeRoutes);
 app.use('/api/v1/auth', authRoutes);
 
 
+app.use(express.static(process.cwd()+"/dist/maharaja/"));
+app.get('/booking', (req,res) => {
+    res.sendFile(process.cwd()+"/dist/maharaja/index.html")
+  });
 
 
 
