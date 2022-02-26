@@ -10,7 +10,7 @@ router.get('/security', (req, res) => {
         let response = {username: btoa(result.username), password: btoa(result.password)}
         let isPasswordMatch = encryptPassword(atob(req.query.password), result.password, res)
         
-    })
+    })  
 })
 
 function encryptPassword(simplePassword, dbhash, res) {
