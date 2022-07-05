@@ -122,16 +122,7 @@ html.swipebox-html.swipebox-touch {
 } 
 #swipebox-prev,
 #swipebox-next,
-#swipebox-close {
-  background-image: url(../images/icons.png);
-  background-repeat: no-repeat;
-  border: none !important;
-  text-decoration: none !important;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  top: 0;
-}
+
 
 #swipebox-arrows {
   display: block;

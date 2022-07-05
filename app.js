@@ -34,7 +34,6 @@ app.use('/api/v1/invoice', invoiceRoutes);
 app.use('/api/v1/employee', employeeRoutes);
 app.use('/api/v1/auth', authRoutes);
 
-
 app.use(express.static(process.cwd()+"/dist/maharaja/"));
 app.get('/booking', (req,res) => {
     res.sendFile(process.cwd()+"/dist/maharaja/index.html")

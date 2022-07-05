@@ -38,11 +38,7 @@ body a:hover,body a:focus{
     position: relative;
 	background:rgba(0, 0, 0, 0.54);
 } 
-.banner{
-    background: url(../images/1.jpg)no-repeat center; 
-    background-size: cover;
-    position: relative;
-} 
+
 /*-- header --*/ 
 .agileinfo-header {
     padding: 1.5em 0em;
@@ -387,10 +383,7 @@ p {
 /*-- //progress-bars --*/ 
 /*-- //about --*/
 /*-- table-book --*/
-.table-book {
-    background: url(../images/bg1.jpg)no-repeat center 0px fixed;
-	background-size:cover;
-}
+
 .book-info {
     border: 10px double #00bcd4;
     padding: 2em;
@@ -453,10 +446,7 @@ p {
 }
 /*-- //services --*/ 
 /*-- team --*/
-.team {
-    background: url(../images/bg1.jpg)no-repeat center 0px fixed;
-    background-size: cover;
-} 
+
 .team-agileinfo:nth-child(3){
 	margin:2em 0 0;
 }
