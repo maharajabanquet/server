@@ -7,9 +7,15 @@ const router = express.Router();
 
 router.get('/security', (req, res) => {
     Auth.findOne({}, function(err, result) {
-        let response = {username: btoa(result.username), password: btoa(result.password)}
-        let isPasswordMatch = encryptPassword(atob(req.query.password), result.password, res)
-        
+		console.log(result.username);
+
+		console.log(result.password);
+		if(result.username === req.query.username && result.password === req.query.password) {
+			res.status(200).json({'authorized': true});
+		} else {
+			res.status(401).json({'authorized': false});
+
+		}
     })  
 })
 
