@@ -8,7 +8,7 @@ var invNum = require('invoice-number')
 
 const main = async (data, res) => {
      let toPut = JSON.parse(data);
-     toPut['invoice'] = toPut.substr(toPut['phoneNumber'].length - 5)
+     toPut['invoice'] = toPut['phoneNumber'].substr(toPut['phoneNumber'].length - 5)
     return   (async () => {
         // launch a new chrome instance
         const browser = await puppeteer.launch({
