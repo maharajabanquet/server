@@ -30,8 +30,7 @@
     "nodemon": "^2.0.15",
     "pdfkit": "^0.13.0",
     "puppeteer": "12.0.1",
-    "short-uuid": "^4.2.0",
-    "stream": "^0.0.2"
+    "short-uuid": "^4.2.0"
   },
   "devDependencies": {
     "@types/express-handlebars": "^6.0.0",
