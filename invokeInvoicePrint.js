@@ -43,7 +43,7 @@ router.post('/generate_invoice',async (req, res) => {
       
       createInvoice(invoice, "invoice.pdf", res)
     
-      bookingSchema.findOneAndUpdate({phoneNumber: req.body.phoneNumber}, {$set: {invoice_generated: true}}).then((a) => {
+      bookingSchema.findOneAndUpdate({phoneNumber: req.body.phoneNumber}, {$set: {invoice_generated: true, invoice_number: `${counter}_MB_${new Date().getUTCFullYear()}`}}).then((a) => {
         console.log("Invoice updated");
       })
 
@@ -60,9 +60,7 @@ router.post('/generate_invoice',async (req, res) => {
   })
   
 function generateInvoiceNumber(count) {
-  console.log(count);
    counterSchema.findOneAndUpdate({index: count}, {$set: {index: count+1}}).then((updateCounter) => {
-    console.log(updateCounter);
      
    })
    return `${count}_MB_${new Date().getUTCFullYear()}`
