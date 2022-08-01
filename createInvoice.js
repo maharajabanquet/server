@@ -151,7 +151,7 @@ function generateFooter(doc, invoice) {
   doc
     .fontSize(10)
     .text(
-      `* Please clear balance amount ${formatCurrency(invoice.subtotal - invoice.paid)} 2 Week before ${invoice.bookingDate} else booking will be cancelled *`,
+      `* Please clear balance amount 2 Week before ${invoice.bookingDate} else booking will be cancelled *`,
       50,
       780,
       { align: "center", width: 500, color: 'red' }
