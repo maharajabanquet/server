@@ -163,12 +163,12 @@ function generateFooters(doc) {
     .fontSize(10)
     .text(
     ` Facilities We Provide:\n 
-      - Sofa
-      - Chair
+      - Sofa - Large (3 Seater)
+      - Chair with cover
       - AC Mini Hall - 01,
       - AC Mandap Hall - 01,
       - Kitchen
-      - Lighting 
+      - Lighting  
       - Generator
       - Open Lawn
       - VIP Room With Attached Bathroom (AC) - 06
