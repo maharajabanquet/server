@@ -80,7 +80,7 @@ function generateInvoiceTable(doc, invoice) {
   generateTableRow(
     doc,
     invoiceTableTop,
-    "Item",
+    "Facility",
     "",
     "Cost",
     "Days",
