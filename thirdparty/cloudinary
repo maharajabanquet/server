@@ -1,0 +1,19 @@
+const cloudinary = require('cloudinary');
+
+cloudinary.config({ 
+    cloud_name: 'maharaja-banquet', 
+    api_key: '343635226579895', 
+    api_secret: 'otDaxVDjbBjtQSI6qW6My07Z_Nc' 
+  });
+
+
+  function upload_invoice(filename, mobile) {
+    cloudinary.v2.uploader.upload(filename, 
+  {resource_type: "video", public_id: `mobile/invoice/${mobile}`,
+  overwrite: true, notification_url: "https://www.maharajaraxaul.com"},
+  function(error, result) {
+    return true
+  });
+  }
+
+  module.exports = cloudinary
