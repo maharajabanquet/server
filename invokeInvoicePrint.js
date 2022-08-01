@@ -63,8 +63,9 @@ function generateInvoiceNumber(count) {
   console.log(count);
    counterSchema.findOneAndUpdate({index: count}, {$set: {index: count+1}}).then((updateCounter) => {
     console.log(updateCounter);
-     return `${count}_MB_${new Date().getUTCFullYear()}`
+     
    })
+   return `${count}_MB_${new Date().getUTCFullYear()}`
 }
 
 function convertBookingDate(date) {
