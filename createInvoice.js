@@ -151,7 +151,7 @@ function generateFooter(doc, invoice) {
   doc
     .fontSize(10)
     .text(
-      `* Please clear balance amount ${formatCurrency(invoice.subtotal - invoice.paid)} before ${invoice.bookingDate} else booking will be cancelled *`,
+      `* Please clear balance amount ${formatCurrency(invoice.subtotal - invoice.paid)} 2 Week before ${invoice.bookingDate} else booking will be cancelled *`,
       50,
       780,
       { align: "center", width: 500, color: 'red' }
@@ -164,13 +164,14 @@ function generateFooters(doc) {
     .text(
     ` Facilities We Provide:\n 
       - Sofa
-      - Mini Hall - 01,
-      - Mandap Hall - 01,
-      - Chair 150 Quantity
-      - Generator With Disel
-      - Stereo Sound System - 01
-      - Open Lawn With Decoration
-      - VIP Room With Attached Bathroom - 06
+      - Chair
+      - AC Mini Hall - 01,
+      - AC Mandap Hall - 01,
+      - Kitchen
+      - Lighting 
+      - Generator
+      - Open Lawn
+      - VIP Room With Attached Bathroom (AC) - 06
       - Jaimala Stage With Fixed Decoration - 01
       - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
       `,
