@@ -165,8 +165,8 @@ function generateFooters(doc) {
     ` Facilities We Provide:\n 
       - Sofa - Large (3 Seater)
       - Chair with cover
-      - AC Mini Hall - 01,
-      - AC Mandap Hall - 01,
+      - AC Mini Hall - 01
+      - AC Mandap Hall - 01
       - Kitchen
       - Lighting  
       - Generator
