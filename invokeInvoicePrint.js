@@ -6,14 +6,18 @@ const fs = require('fs')
 const crypt = require('crypto');
 const cloudinary = require('cloudinary')
 const bookingSchema = require('./models/Booking');
+const counterSchema = require('./models/Counter');
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY, 
     api_secret: process.env.API_SECRET 
   });
 
-router.post('/generate_invoice', (req, res) => {
-    console.log(req.body);
+router.post('/generate_invoice',async (req, res) => {
+  let counter;
+  await counterSchema.findOne({}).then(data => {
+    counter = data.index;
+  })
     const invoice = {
         shipping: {
           name: req.body.firstName + " " + req.body.lastName,
@@ -33,11 +37,12 @@ router.post('/generate_invoice', (req, res) => {
         ],
         subtotal: 120000,
         paid: req.body.BookingAmount,
-        invoice_nr: generateInvoiceNumber(),
+        invoice_nr: generateInvoiceNumber(counter),
         bookingDate: convertBookingDate(req.body.bookingDate)
       };
+      
       createInvoice(invoice, "invoice.pdf", res)
-      console.log("");
+    
       bookingSchema.findOneAndUpdate({phoneNumber: req.body.phoneNumber}, {$set: {invoice_generated: true}}).then((a) => {
         console.log("Invoice updated");
       })
@@ -54,8 +59,12 @@ router.post('/generate_invoice', (req, res) => {
         }, 1000)
   })
   
-function generateInvoiceNumber() {
-    return crypt.randomInt(0, 1000000);
+function generateInvoiceNumber(count) {
+  console.log(count);
+   counterSchema.findOneAndUpdate({index: count}, {$set: {index: count+1}}).then((updateCounter) => {
+    console.log(updateCounter);
+     return `${count}_MB_${new Date().getUTCFullYear()}`
+   })
 }
 
 function convertBookingDate(date) {
