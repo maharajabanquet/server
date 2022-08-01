@@ -23,7 +23,7 @@
     "invoice-number": "^1.0.6",
     "lodash": "^4.17.21",
     "mongodb": "^4.2.1",
-    "mongoose": "^6.0.14",
+    "mongoose": "^5.0.1",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-paginate": "^5.0.3",
     "nodemailer": "^6.7.6",

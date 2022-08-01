@@ -5,7 +5,7 @@ const router = express.Router();
 const fs = require('fs')
 const crypt = require('crypto');
 const cloudinary = require('cloudinary')
-
+const bookingSchema = require('./models/Booking');
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY, 
@@ -36,12 +36,15 @@ router.post('/generate_invoice', (req, res) => {
         invoice_nr: generateInvoiceNumber(),
         bookingDate: convertBookingDate(req.body.bookingDate)
       };
-        createInvoice(invoice, "invoice.pdf", res)
+      createInvoice(invoice, "invoice.pdf", res)
+      console.log("");
+      bookingSchema.findOneAndUpdate({phoneNumber: req.body.phoneNumber}, {$set: {invoice_generated: true}}).then((a) => {
+        console.log("Invoice updated");
+      })
+
         setTimeout( () => {
-            cloudinary.v2.uploader.upload("invoice.pdf", 
+            cloudinary.v2.uploader.upload("invoice.pdf", {public_id: req.body.phoneNumber}, 
             function(error, result) {
-                console.log(error);
-                console.log(result);
                 const file = fs.readFileSync('invoice.pdf', 'binary')
                 res.setHeader('Content-Type', 'application/pdf');
                 res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');

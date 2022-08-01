@@ -49,6 +49,10 @@ const BookingSchema = mongoose.Schema({
     status: {
         type: String,
         required: true
+    },
+    invoice_generated: {
+        type: Boolean,
+        default: false,
     }
 })
 BookingSchema.plugin(mongoosePaginate);

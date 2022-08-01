@@ -19,7 +19,7 @@ router.get('/get-booking-list', (req, res) => {
     let projection = {}
     let query = {}
     if(req.query.bookingDate) {
-        projection = {'bookingDate': 1, 'status': 1};
+        projection = {'bookingDate': 1, 'status': 1, 'invoice_generated': 1};
     }
     if(req && req.query && req.query.bookingDateQuery) {
         query = {bookingDate: req.query.bookingDateQuery}
@@ -27,7 +27,6 @@ router.get('/get-booking-list', (req, res) => {
     if(req && req.query && req.query.status) {
         query = {status: req.query.status}
     }
-    console.log(query)
     Booking.find(query, projection).then(data => {
         res.status(200).json({'bookingData': data});
     }, (err) => {
