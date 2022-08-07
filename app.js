@@ -24,7 +24,7 @@ const invoiceRoutes = require('./routes/invoice_generator');
 const employeeRoutes = require('./routes/employee');
 const authRoutes = require('./routes/auth');
 const pdfkitRoutes = require('./invokeInvoicePrint');
-
+const trafficRoutes = require('./routes/traffic')
 
 
 
@@ -37,6 +37,9 @@ app.use('/api/v1/config', configRoutes);
 app.use('/api/v1/employee', employeeRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/invoice', pdfkitRoutes);
+app.use('/api/v1/traffic', trafficRoutes);
+
+
 
 
 app.use(express.static(process.cwd()+"/dist/maharaja/"));
