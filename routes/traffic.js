@@ -13,4 +13,11 @@ router.post('/snapshot_visitor', (req, res) => {
     })
 })
 
+router.get('/checkt', (req, res) => {
+    const totalHit = traffic.find({})
+        totalHit.count(function(err, count){
+            res.status(200).json({'totalHit': count})
+        })
+})
+
 module.exports = router
