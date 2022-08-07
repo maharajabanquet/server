@@ -2,7 +2,23 @@ const mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 
 const TrafficSchema = mongoose.Schema({
-    client_ip: {
+    IPv4: {
+        type: String,
+    },
+    city: {
+        type: String,
+    },
+    country_code: {
+        type: String,
+    },
+    country_name: {
+        type: String,
+    },
+    
+    postal: {
+        type: String,
+    },
+    state: {
         type: String,
     },
 })
