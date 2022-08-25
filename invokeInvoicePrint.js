@@ -32,10 +32,10 @@ router.post('/generate_invoice',async (req, res) => {
             item: req.body.requirements,
             description: "Booking Confirmed",
             quantity: 1,
-            amount: 120000
+            amount: req.body.finalAmount
           },
         ],
-        subtotal: 120000,
+        subtotal: req.body.finalAmount,
         paid: req.body.BookingAmount,
         invoice_nr: generateInvoiceNumber(counter),
         bookingDate: convertBookingDate(req.body.bookingDate)
