@@ -1,15 +1,17 @@
 const express = require('express');
 const { Router } = require('express');
 const Booking = require('../models/Booking');
+const Config = require('../models/Config');
 
 const router = express.Router();
 
 router.post('/add-booking', (req, res) => {
     const add_booking = new Booking(req.body);
     add_booking.save(req.body).then(data => {
-        res.status(200).json({'success': data});
+        Config.updateOne({$set: {finalBookingAmount: 150000}}, function(err, success) {
+            res.status(200).json({'success': data});
+        })
     }).catch(err => {
-        console.log(err);
         
         res.status(503).json({'error': 'Internal Server Error'})
     })
