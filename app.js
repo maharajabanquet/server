@@ -25,8 +25,7 @@ const employeeRoutes = require('./routes/employee');
 const authRoutes = require('./routes/auth');
 const pdfkitRoutes = require('./invokeInvoicePrint');
 const trafficRoutes = require('./routes/traffic')
-
-
+const LaganRoutes = require('./routes/lagan');
 
 
 
@@ -38,6 +37,8 @@ app.use('/api/v1/employee', employeeRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/invoice', pdfkitRoutes);
 app.use('/api/v1/traffic', trafficRoutes);
+app.use('/api/v1/lagan', LaganRoutes);
+
 
 
 
