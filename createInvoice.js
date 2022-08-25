@@ -169,7 +169,7 @@ function generateFooters(doc) {
       - AC Mandap Hall - 01
       - Kitchen
       - Lighting  
-      - Generator
+      - Generator (Diesel Not Included)
       - Open Lawn
       - VIP Room With Attached Bathroom (AC) - 06
       - Jaimala Stage With Fixed Decoration - 01
