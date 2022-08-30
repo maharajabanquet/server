@@ -55,7 +55,7 @@ app.get('/booking', (req,res) => {
 mongoose.connect(
     process.env.DB_CONNECTION
     , (e) => {
-    console.log('Connected to Database ' + db_uri);
+    console.log('Connected to Database ' + process.env.DB_CONNECTION);
 });
 
 // Listen To Server
