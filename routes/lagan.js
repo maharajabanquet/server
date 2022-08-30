@@ -15,7 +15,7 @@ router.post('/add-lagan', (req, res) => {
     })
 })
 
-router.get('/   ', (req, res) => {
+router.get('/get-lagan', (req, res) => {
     Lagan.find({}, function(err, laganData){
         if(err) {
             res.status(500).json({"status": "Internal Server Error"});
