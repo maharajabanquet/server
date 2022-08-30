@@ -49,8 +49,6 @@ app.get('/booking', (req,res) => {
 
 
 
-
-
 // Connect To DB
 mongoose.connect(
     process.env.DB_CONNECTION

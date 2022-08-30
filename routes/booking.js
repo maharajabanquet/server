@@ -5,7 +5,8 @@ const Config = require('../models/Config');
 const FCM = require('fcm-node');
 const token = require('../models/Tokens');
 const router = express.Router();
-const serverKey = process.env.SERVER_KEY //put your server key here
+const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
+console.log(typeof(serverKey));
 
 router.post('/add-booking', (req, res) => {
     const add_booking = new Booking(req.body);
@@ -69,8 +70,14 @@ router.get('/confirm-booking', (req, res) => {
 
 
 function sendPushNotifcation(ids, bookingDate) {
+    let token_list = []
+    console.log();
+    ids.forEach(element => {
+        token_list.push(element.fcm_token)
+    });
+    console.log(token_list);
     const message = {
-        registration_ids: ["elqigjqIR8qPpo6h-fv8Y_:APA91bFMBQ34hDWEAOOPDBAmT27e0L-c8XYsb0Ii-tiBU-_pHQw136A5XLJQoE3c1L6s2coJSnRDLaZv_UDdgL2FllGmnbnxxLjHJePbhdxZy-usRrs028XAja-a8So8qEavl2e5lieK"] ,  // array required
+        registration_ids: token_list ,  // array required
         notification: {
             title: `Booking for ${new Date(bookingDate.bookingDate).toLocaleDateString()}` ,
             body: `please tap to confirm`,
@@ -89,7 +96,7 @@ function sendPushNotifcation(ids, bookingDate) {
     const fcm = new FCM(serverKey);
     fcm.send(message, (err, response) => {
         if (err) {
-           console.log("FCM ERROR ", error);
+           console.log("FCM ERROR ", err);
         } else {
             console.log("Successfully sent with response: ", response);
         }
