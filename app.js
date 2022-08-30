@@ -47,19 +47,13 @@ app.get('/booking', (req,res) => {
     res.sendFile(process.cwd()+"/dist/maharaja/index.html")
   });
 
- 
-let db_uri = undefined;
-if(process.env.ENV = 'LOCAL') {
-    db_uri = process.env.LOCAL_DB
-} else {
-    db_uri = process.env.DB_CONNECTION
-}
+
 
 
 
 // Connect To DB
 mongoose.connect(
-    db_uri
+    process.env.DB_CONNECTION
     , (e) => {
     console.log('Connected to Database ' + db_uri);
 });
