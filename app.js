@@ -26,7 +26,7 @@ const authRoutes = require('./routes/auth');
 const pdfkitRoutes = require('./invokeInvoicePrint');
 const trafficRoutes = require('./routes/traffic')
 const LaganRoutes = require('./routes/lagan');
-
+const tokenRoutes = require('./routes/token');
 
 
 app.use('/api/v1/enquiry', enquiryRoutes);
@@ -38,8 +38,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/invoice', pdfkitRoutes);
 app.use('/api/v1/traffic', trafficRoutes);
 app.use('/api/v1/lagan', LaganRoutes);
-
-
+app.use('/api/v1/token', tokenRoutes)
 
 
 
@@ -48,16 +47,24 @@ app.get('/booking', (req,res) => {
     res.sendFile(process.cwd()+"/dist/maharaja/index.html")
   });
 
+ 
+let db_uri = undefined;
+if(process.env.ENV = 'LOCAL') {
+    db_uri = process.env.LOCAL_DB
+} else {
+    db_uri = process.env.DB_CONNECTION
+}
+
 
 
 // Connect To DB
 mongoose.connect(
-    process.env.DB_CONNECTION
+    db_uri
     , (e) => {
-    console.log('Connected to Database ' + process.env.DB_CONNECTION);
+    console.log('Connected to Database ' + db_uri);
 });
 
 // Listen To Server
 console.log(process.env.PORT);
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, '192.168.1.14');
