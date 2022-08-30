@@ -24,7 +24,6 @@
     "mongodb": "^4.2.1",
     "mongoose": "^6.0.14",
     "fcm-node": "^1.6.1",
-    "mongoose-auto-increment": "^5.0.1",
     "mongoose-paginate": "^5.0.3",
     "nodemailer": "^6.7.6",
     "nodemon": "^2.0.15",

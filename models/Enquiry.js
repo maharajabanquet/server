@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
 
 const EnquirySchema = mongoose.Schema({
     firstName: {
@@ -8,7 +7,7 @@ const EnquirySchema = mongoose.Schema({
     },
     lastName: {
         type: String,
-        required: true,
+        required: true,   
     },
     phoneNumber: {
         type: String,
@@ -27,6 +26,5 @@ const EnquirySchema = mongoose.Schema({
         default: Date.now
     }
 })
-EnquirySchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Enquiry', EnquirySchema)
