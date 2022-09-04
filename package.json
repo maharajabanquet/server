@@ -30,7 +30,9 @@
     "nodemon": "^2.0.15",
     "pdfkit": "^0.13.0",
     "puppeteer": "12.0.1",
-    "short-uuid": "^4.2.0"
+    "qrcode-terminal": "^0.12.0",
+    "short-uuid": "^4.2.0",
+    "whatsapp-web.js": "^1.17.1"
   },
   "devDependencies": {
     "@types/express-handlebars": "^6.0.0",

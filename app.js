@@ -5,6 +5,38 @@ const fs = require('fs')
 require('dotenv/config')
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const  qrcode  = require('qrcode-terminal')
+
+ 
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const  qrcode  = require('qrcode-terminal')
+const client = new Client({
+    authStrategy: new LocalAuth()
+});
+ 
+
+client.on('qr', (qr) => {
+    qrcode.generate(qr, {small: true})
+});
+
+client.on('ready', () => {
+    console.log('Client is ready!');
+    const number = "+918884540523";
+    const text = "Hey Ankit Sending this message from heroku";
+    const chatId = number.substring(1) + "@c.us";
+    client.sendMessage(chatId, text);
+
+});
+
+client.on('message', message => {
+	console.log(message.body);
+});
+
+
+
+ 
+client.initialize();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(function(req, res, next) {
