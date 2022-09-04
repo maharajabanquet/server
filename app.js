@@ -6,39 +6,6 @@ require('dotenv/config')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
- 
-const { Client, LocalAuth } = require('whatsapp-web.js');
-const  qrcode  = require('qrcode-terminal')
-const client = new Client({
-    authStrategy: new LocalAuth(),
-    puppeteer: {
-		args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        headless: true
-	}
-});
- 
-
-client.on('qr', (qr) => {
-    qrcode.generate(qr, {small: true})
-});
-
-client.on('ready', () => {
-    console.log('Client is ready!');
-    const number = "+918884540523";
-    const text = "Hey Ankit Sending this message from heroku";
-    const chatId = number.substring(1) + "@c.us";
-    client.sendMessage(chatId, text);
-
-});
-
-client.on('message', message => {
-	console.log(message.body);
-});
-
-
-
- 
-client.initialize();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(function(req, res, next) {
@@ -46,8 +13,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-
 
 
 // Import Routes
@@ -61,6 +26,7 @@ const pdfkitRoutes = require('./invokeInvoicePrint');
 const trafficRoutes = require('./routes/traffic')
 const LaganRoutes = require('./routes/lagan');
 const tokenRoutes = require('./routes/token');
+const whatsappRoutes = require('./routes/whatsapp');
 
 
 app.use('/api/v1/enquiry', enquiryRoutes);
@@ -73,6 +39,8 @@ app.use('/api/v1/invoice', pdfkitRoutes);
 app.use('/api/v1/traffic', trafficRoutes);
 app.use('/api/v1/lagan', LaganRoutes);
 app.use('/api/v1/token', tokenRoutes)
+app.use('/api/v1/whatsapp', whatsappRoutes)
+
 
 
 
