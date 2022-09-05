@@ -27,6 +27,8 @@ const trafficRoutes = require('./routes/traffic')
 const LaganRoutes = require('./routes/lagan');
 const tokenRoutes = require('./routes/token');
 const whatsappRoutes = require('./routes/whatsapp');
+const CommRoutes = require('./routes/communication');
+
 
 
 app.use('/api/v1/enquiry', enquiryRoutes);
@@ -38,8 +40,10 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/invoice', pdfkitRoutes);
 app.use('/api/v1/traffic', trafficRoutes);
 app.use('/api/v1/lagan', LaganRoutes);
-app.use('/api/v1/token', tokenRoutes)
-app.use('/api/v1/whatsapp', whatsappRoutes)
+app.use('/api/v1/token', tokenRoutes);
+app.use('/api/v1/whatsapp', whatsappRoutes);
+app.use('/api/v1/coms', CommRoutes);
+
 
 
 

@@ -14,6 +14,7 @@ router.get('/check-auth', (req, res) => {
 })
 
 whatsapp.clientReady();
+whatsapp.wishBaby();
 whatsapp.run();
 
 module.exports = router;

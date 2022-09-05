@@ -4,7 +4,9 @@ const Booking = require('../models/Booking');
 const Config = require('../models/Config');
 const FCM = require('fcm-node');
 const token = require('../models/Tokens');
+const { ObjectId } = require('mongodb');
 const router = express.Router();
+
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 console.log(typeof(serverKey));
 
@@ -104,10 +106,29 @@ function sendPushNotifcation(ids, bookingDate) {
 }
 
 
-router.post('/send-push',(req,res) => {
-    
-  
-    
+router.post('/settle-booking',(req,res) => {
+    const _id = new ObjectId(req.body._id);
+    Booking.findById({_id: _id}, function(err, data) {
+        console.log(data);
+        if(!data) {
+            res.status(404).json({"status": "Booking not found"});
+            return;
+        } else {
+            const balancedAmount = 0;
+            const BookingAmount = data.finalAmount;
+            const settled = true;
+            const query = {_id: _id};
+            const toUpdate = {'BookingAmount': BookingAmount, 'balancedAmount': balancedAmount, 'settled': settled, 'invoice_generated': false}
+            Booking.findByIdAndUpdate(query, {$set: toUpdate}, function(err, data) {
+                if(err) {
+                    res.status(503).json({"status": "Unable to settle account,please contact owner"}); 
+                    return;
+                }
+                res.status(200).json({"status": 'ok'})
+            })
+
+        }
+    })
 })
 
 

@@ -56,6 +56,10 @@ const BookingSchema = mongoose.Schema({
     },
     invoice_number: {
         type: String
+    },
+    settled: {
+        type: Boolean,
+        default: false
     }
 })
 BookingSchema.plugin(mongoosePaginate);

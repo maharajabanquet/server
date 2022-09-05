@@ -1,5 +1,6 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const  qrcode  = require('qrcode-terminal')
+const axios = require('axios');
 const client = new Client({
     // authStrategy: new LocalAuth(),
     puppeteer: {
@@ -43,6 +44,14 @@ class WhatsappBot {
           });
     }
 
+    wishBaby() {
+        client.on('message',  message => {
+            const content = message.body;
+            if(content === "Good morning baby" || content === "Good Gorning baby" || content === "good morning baby") {
+               client.sendMessage(message.from, "Good Morning My Love");
+            }
+        })
+    } 
     run() {
         client.initialize();
     }
