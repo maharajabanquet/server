@@ -36,9 +36,10 @@ class WhatsappBotScheduler {
                     console.log('No Booking, Task Skipped');
                 } else {
                     data.forEach(element => {
-                        console.log(element.phoneNumber);
-                        const chatId = `91${element.phoneNumber}@c.us`;
-                        const message = `*Hi ${element.firstName}, Please clear balance amount 2 Week before ${element.bookingDate} else booking will be cancelled*`
+                        const chatId = `917494972470@c.us`;
+                        // const message = `*Hi Praveen, Please clear balance amount 2 Week before ${element.bookingDate} else booking will be cancelled*`
+                        const message = `*Hi Praveen, Please clear balance amount 2 Week before  else booking will be cancelled*`
+
                         userData.push({chatId: chatId, message: message})
                         // client.sendMessage(chatId, message)
                     })
