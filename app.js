@@ -28,6 +28,7 @@ const LaganRoutes = require('./routes/lagan');
 const tokenRoutes = require('./routes/token');
 const whatsappRoutes = require('./routes/whatsapp');
 const CommRoutes = require('./routes/communication');
+const TaskRoutes = require('./routes/task');
 
 
 
@@ -43,6 +44,9 @@ app.use('/api/v1/lagan', LaganRoutes);
 app.use('/api/v1/token', tokenRoutes);
 app.use('/api/v1/whatsapp', whatsappRoutes);
 app.use('/api/v1/coms', CommRoutes);
+app.use('/api/v1/task', TaskRoutes);
+
+
 
 
 
