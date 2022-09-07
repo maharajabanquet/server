@@ -3,6 +3,7 @@ require('dotenv/config')
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const mongoose = require('mongoose');
 const booking = require('./models/Booking');
+const qrterminal = require('qrcode-terminal')
 // Connect To DB
 mongoose.connect(
     process.env.DB_CONNECTION
@@ -20,10 +21,9 @@ const client = new Client({
 
 
 class WhatsappBotScheduler {
-    generateQR(res) {
+    generateQR() {
         client.on('qr', (qr) => {
-            console.log('Generated!');
-            res.status(200).json({"qr_code":qr})
+            qrterminal.generate(qr, {small:true})
         });
     }
     
@@ -74,6 +74,7 @@ class WhatsappBotScheduler {
 }
 
 const whatsappbot = new WhatsappBotScheduler();
+whatsappbot.generateQR();
 whatsappbot.run();
 whatsappbot.authenticate();
 whatsappbot.clientReady();
