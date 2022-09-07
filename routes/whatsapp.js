@@ -13,7 +13,7 @@ router.get('/check-auth', (req, res) => {
     whatsapp.authenticate(res)
 })
 
-whatsapp.clientReady();
+// whatsapp.clientReady();
 whatsapp.messageReove();
 whatsapp.wishBaby();
 whatsapp.run();
