@@ -60,6 +60,12 @@ const BookingSchema = mongoose.Schema({
     settled: {
         type: Boolean,
         default: false
+    },
+    reminder_date: {
+        type: Date
+    },
+    cancel_date: {
+        type: Date
     }
 })
 BookingSchema.plugin(mongoosePaginate);

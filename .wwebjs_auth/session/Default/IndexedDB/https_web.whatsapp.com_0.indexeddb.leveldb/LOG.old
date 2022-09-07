@@ -1,10 +1,12 @@
-2022/09/07-19:46:56.640 75d0 Reusing MANIFEST E:\Maharaja Banquet\server\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2022/09/07-19:46:56.640 75d0 Recovering log #4
-2022/09/07-19:46:56.781 75d0 Reusing old log E:\Maharaja Banquet\server\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000004.log 
-2022/09/07-19:47:10.295 8110 Level-0 table #8: started
-2022/09/07-19:47:10.391 8110 Level-0 table #8: 1132905 bytes OK
-2022/09/07-19:47:10.452 8110 Delete type=0 #4
-2022/09/07-19:47:10.598 8110 Compacting 1@1 + 1@2 files
-2022/09/07-19:47:10.713 8110 Generated table #9@1: 17694 keys, 1177660 bytes
-2022/09/07-19:47:10.713 8110 Compacted 1@1 + 1@2 files => 1177660 bytes
-2022/09/07-19:47:10.796 8110 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/09/07-23:21:17.151 2e98 Reusing MANIFEST E:\Maharaja Banquet\server\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/09/07-23:21:17.151 2e98 Recovering log #59
+2022/09/07-23:21:17.152 2e98 Reusing old log E:\Maharaja Banquet\server\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000059.log 
+2022/09/07-23:21:17.887 2be0 Compacting 1@1 + 2@2 files
+2022/09/07-23:21:18.059 2be0 Generated table #62@1: 29542 keys, 2255867 bytes
+2022/09/07-23:21:18.179 2be0 Generated table #63@1: 48827 keys, 2234084 bytes
+2022/09/07-23:21:18.247 2be0 Generated table #64@1: 9777 keys, 210178 bytes
+2022/09/07-23:21:18.247 2be0 Compacted 1@1 + 2@2 files => 4700129 bytes
+2022/09/07-23:21:18.261 2be0 compacted to: files[ 0 0 3 0 0 0 0 ]
+2022/09/07-23:21:18.262 2be0 Delete type=2 #56
+2022/09/07-23:21:18.262 2be0 Delete type=2 #57
+2022/09/07-23:21:18.262 2be0 Delete type=2 #60

@@ -1,3 +1,4 @@
+
 const express = require('express');
 const { Router } = require('express');
 const Booking = require('../models/Booking');
@@ -6,11 +7,22 @@ const FCM = require('fcm-node');
 const token = require('../models/Tokens');
 const { ObjectId } = require('mongodb');
 const router = express.Router();
+var moment = require('moment'); // require
 
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 console.log(typeof(serverKey));
 
 router.post('/add-booking', (req, res) => {
+    
+    var reminderDate = moment(new Date(req.body.bookingDate));
+    reminderDate = reminderDate.subtract(14, "days");
+    reminderDate = reminderDate.format();
+    req.body['reminder_date'] = reminderDate;
+    // add cancel date
+    var cancelDate = moment(new Date(req.body.bookingDate));
+    cancelDate = cancelDate.subtract(10, "days");
+    cancelDate = cancelDate.format();
+    req.body['cancel_date'] = cancelDate;
     const add_booking = new Booking(req.body);
     add_booking.save(req.body).then(data => {
         Config.updateOne({$set: {finalBookingAmount: 150000}}, function(err, success) {
@@ -22,7 +34,6 @@ router.post('/add-booking', (req, res) => {
             res.status(200).json({'success': data});
         })
     }).catch(err => {
-        
         res.status(503).json({'error': 'Internal Server Error'})
     })
 })

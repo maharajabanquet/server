@@ -24,6 +24,7 @@
     "invoice-generator": "^0.3.0",
     "invoice-number": "^1.0.6",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "mongodb": "^4.2.1",
     "mongoose": "^6.0.14",
     "mongoose-paginate": "^5.0.3",
