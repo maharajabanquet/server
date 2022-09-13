@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
 
 const BookingSchema = mongoose.Schema({
     bookingDate: {
@@ -68,6 +67,5 @@ const BookingSchema = mongoose.Schema({
         type: Date
     }
 })
-BookingSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Booking', BookingSchema)

@@ -65,7 +65,7 @@ router.get('/get-booking-list', (req, res) => {
 })
 
 router.get('/get-booking-admin', (req, res) => {
-    Booking.paginate({}, {page: Number(req.query.pageNo), limit: Number(req.query.pageSize), sort:     { timestamp: -1 }}, function(err, result){
+    Booking.find({}, function(err, result){
         res.status(200).json({'success': result});
     })
 })

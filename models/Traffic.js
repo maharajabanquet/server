@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
 
 const TrafficSchema = mongoose.Schema({
     IPv4: {

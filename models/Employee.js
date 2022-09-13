@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
 
 
 
@@ -38,5 +37,4 @@ const EmployeeSchema = mongoose.Schema({
 
 })
 // EmployeeSchema.plugin(autoIncrement.plugin, 'employee');
-EmployeeSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('employee', EmployeeSchema);
