@@ -3,7 +3,6 @@ const puppeteer = require('puppeteer')
 const fs = require('fs')
 const router = express.Router();
 const handlebars = require("handlebars");
-var invNum = require('invoice-number')
 
 
 const main = async (data, res) => {

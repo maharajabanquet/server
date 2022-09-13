@@ -53,10 +53,12 @@ function clientReady() {
                     userData.push({'chatId': chatId, 'message': message, 'cancelDate': cancelDate, 'reminderDate': reminderDate, 'bookingDate': element.bookingDate, 'phoneNumber': element.phoneNumber, 'status': element.status})
                 })
                 for(let index=0; index<userData.length ; index++) {
-                    if(userData && userData.status === 'testing') {
+                    console.log(userData[index].status);
+                    if(userData && userData[index].status === 'testing') {
                         console.log("TESTING NOTIFICATION");
                         let today = moment().startOf('days')
                         let isSame = today.isSame(moment(userData[index].reminderDate).startOf('days'));
+                        console.log(isSame);
                         let isCanelDate = today.isSame(moment(userData[index].cancelDate).startOf('days'))
                         console.log("TODAY ", today);
                         console.log("REMINDER DATE ", moment(userData[index].reminderDate).startOf('days'));
