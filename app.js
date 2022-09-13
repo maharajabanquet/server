@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 const enquiryRoutes = require('./routes/enquiry');
 const bookingRoutes = require('./routes/booking');
 const configRoutes = require('./routes/config');
-const invoiceRoutes = require('./routes/invoice_generator');
+// const invoiceRoutes = require('./routes/invoice_generator');
 const employeeRoutes = require('./routes/employee');
 const authRoutes = require('./routes/auth');
 const pdfkitRoutes = require('./invokeInvoicePrint');
