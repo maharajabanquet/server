@@ -1,6 +1,5 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 const  qrcode  = require('qrcode-terminal')
-const axios = require('axios');
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -51,7 +50,7 @@ class WhatsappBot {
             if(content === "Good morning baby" || content === "Good Gorning baby" || content === "good morning baby") {
                client.sendMessage(message.from, "Good Morning My Love");
             } else if(content === 'meme' || content === 'meme'){
-                const meme = await axios("https://meme-api.herokuapp.com/gimme").then(res => res.data)
+                // const meme = await axios("https://meme-api.herokuapp.com/gimme").then(res => res.data)
                 client.sendMessage(message.from, await MessageMedia.fromUrl(meme.url))
             }
         })

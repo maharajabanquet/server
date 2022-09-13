@@ -10,7 +10,7 @@ require('dotenv/config')
 const { Client, LocalAuth, LegacySessionAuth } = require('whatsapp-web.js');
 const mongoose = require('mongoose');
 const booking = require('./models/Booking');
-const qrterminal = require('qrcode-terminal')
+// const qrterminal = require('qrcode-terminal')
 var moment = require('moment'); // require
 moment().format(); 
 
@@ -30,7 +30,8 @@ const client = new Client({
 });
 function generateQR() {
     client.on('qr', (qr) => {
-        qrterminal.generate(qr, {small:true})
+        // qrterminal.generate(qr, {small:true})
+        console.log(qr);
     });
 }
 
