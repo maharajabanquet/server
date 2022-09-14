@@ -20,10 +20,9 @@ router.get('/get-employee-list', (req, res) => {
     })
 })
 
-router.get('/update-employee-status', (req, res) => {
-    Employee.update({_id: req.query.id}, {$set: {status: req.query.status}}, function(err, result) {
-        res.status(200).json({'status': 'success'});
-        console.log(result);
-    })
+router.get('/add-task', (req, res) => {
+    console.log(res);
+    res.status(200).json({'success': true});
+
 })
 module.exports = router

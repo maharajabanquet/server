@@ -8,6 +8,10 @@ const TokenSchema = mongoose.Schema({
     fcm_token: {
         type: String
     },
+    admin: {
+        type: Boolean,
+        default: false
+    }
    
 })
 

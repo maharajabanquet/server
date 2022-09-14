@@ -6,7 +6,7 @@ require('dotenv/config')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -67,6 +67,6 @@ mongoose.connect(
 });
 
 // Listen To Server
-console.log(process.env.PORT);
+console.log(process.env.PORT, '192.168.1.14');
 
 app.listen(process.env.PORT || 3000);

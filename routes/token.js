@@ -7,13 +7,12 @@ router.post('/add_tokens', (req, res) => {
     const fcm_token = req && req.body && req.body.fcm_token;
     console.log(device_id);
     console.log(fcm_token);
-  
-    Token.findOneAndUpdate({'device_id': device_id}, {$set: {'fcm_token': fcm_token}}, function(err, success) {
+    Token.findOneAndUpdate({'device_id': device_id}, {$set: {'fcm_token': fcm_token, 'admin': false}}, function(err, success) {
         if(!success) {
-            res.status(200).json({admin: false});
+            res.status(200).json({status: false});
             return;
         }
-        res.status(200).json({admin: true})
+        res.status(200).json({status: true, docs: success})
     })
 })
 
