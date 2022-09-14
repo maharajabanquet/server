@@ -67,6 +67,6 @@ mongoose.connect(
 });
 
 // Listen To Server
-console.log(process.env.PORT, '192.168.1.14');
+console.log(process.env.PORT);
 
 app.listen(process.env.PORT || 3000);
