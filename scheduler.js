@@ -49,7 +49,7 @@ function clientReady() {
                     const chatId = `91${element.phoneNumber}@c.us`;
                     const cancelDate = element.cancel_date;
                     const reminderDate = element.reminder_date;
-                    const message = `*Maharaja Banquet Reminder:* \nHi ${element.firstName}, Please clear balance amount 2 Week before ${element.bookingDate} else booking will be cancelled*`
+                    const message = `*Gentle Reminder from Maharaja:* \nHi ${element.firstName}, Please clear balance amount 2 Week before ${element.bookingDate} to avoid cancellation`
                     userData.push({'chatId': chatId, 'message': message, 'cancelDate': cancelDate, 'reminderDate': reminderDate, 'bookingDate': element.bookingDate, 'phoneNumber': element.phoneNumber, 'status': element.status})
                 })
                 for(let index=0; index<userData.length ; index++) {
