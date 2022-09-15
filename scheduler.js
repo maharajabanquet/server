@@ -56,7 +56,7 @@ function clientReady() {
                 })
                 for(let index=0; index<userData.length ; index++) {
                     console.log(userData[index].status);
-                    if(userData && userData[index].status === 'testing') {
+                    if(userData && userData[index].status === 'approved') {
                         console.log("TESTING NOTIFICATION");
                         let today = moment().startOf('days')
                         let isSame = today.isSame(moment(userData[index].reminderDate).startOf('days'));
