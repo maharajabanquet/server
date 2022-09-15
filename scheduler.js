@@ -67,13 +67,13 @@ function clientReady() {
                         console.log("CANCEL DATE ", moment(userData[index].cancelDate).startOf('days'));
                         if(isSame) {
                             console.log("Booking Reminder Detected ", userData[index].reminderDate);
-                            console.log("Message TO: ", chatId);
+                            console.log("Message TO: ", userData[index].chatId);
                             client.sendMessage(userData[index].chatId, userData[index].message)
                         };
                         if(isCanelDate) {
                             booking.findOneAndUpdate({'phoneNumber': userData[index].phoneNumber}, {$set: {status: 'cancelled'}}, function(err, data){
                                 console.log("BOOKING CANCELLED FOR ",userData[index].bookingDate);
-                                console.log("Message TO: ", chatId);
+                                console.log("Message TO: ", userData[index].chatId);
                                 client.sendMessage(userData[index].chatId, `**नमस्ते ${element.firstName} जेंटल  रिमाइंडर महाराजा बैंक्वेट के तरफ से:* \nआपके दुवारा भुगतान न होने के कारण आपकी बुकिंग ${userData[index].bookingDate} रद्द कर दी गई है`)
                             });
                         }
