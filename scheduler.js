@@ -50,7 +50,7 @@ function clientReady() {
                     const cancelDate = element.cancel_date;
                     const reminderDate = element.reminder_date;
                     // const message = `*Gentle Reminder from Maharaja:* \nHi ${element.firstName}, Please clear balance amount 2 Week before ${element.bookingDate} to avoid cancellation`
-                    const message = `*नमस्ते ${element.firstName} जेंटल  रिमाइंडर महाराजा बैंक्वेट के तरफ से:* \nबुकिंग रद्द होने से बचने के लिए कृपया ${element.bookingDate} से 2 सप्ताह पहले शेष राशि का भुगतान करें।`
+                    const message = `*Hi ${element.firstName} Gentle Reminder From Maharaja Banquet:* \nPlease clear all the dues before ${element.bookingDate} to avoid booking cancellation`
                     
                     userData.push({'chatId': chatId, 'message': message, 'cancelDate': cancelDate, 'reminderDate': reminderDate, 'bookingDate': element.bookingDate, 'phoneNumber': element.phoneNumber, 'status': element.status, firstName: element.firstName})
                 })
@@ -74,7 +74,7 @@ function clientReady() {
                             booking.findOneAndUpdate({'phoneNumber': userData[index].phoneNumber}, {$set: {status: 'cancelled'}}, function(err, data){
                                 console.log("BOOKING CANCELLED FOR ",userData[index].bookingDate);
                                 console.log("Message TO: ", userData[index].chatId);
-                                client.sendMessage(userData[index].chatId, `*नमस्ते ${userData[index].firstName} जेंटल  रिमाइंडर महाराजा बैंक्वेट के तरफ से:* \nआपके दुवारा भुगतान न होने के कारण आपकी बुकिंग ${userData[index].bookingDate} रद्द कर दी गई है`)
+                                client.sendMessage(userData[index].chatId, `*Hi ${userData[index].firstName} Gentle Reminder From Maharaja Banquet:* \nYou Booking has been cancelled for ${userData[index].bookingDate}.`)
                             });
                         }
                     }

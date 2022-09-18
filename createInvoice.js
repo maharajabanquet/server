@@ -5,9 +5,10 @@ function createInvoice(invoice, path) {
   let doc = new PDFDocument({ size: "A4", margin: 50 });
   generateHeader(doc);
   generateCustomerInformation(doc, invoice);
+  generateFooters(doc, invoice)
   generateInvoiceTable(doc, invoice);
   generateFooter(doc, invoice);
-  generateFooters(doc)
+
  doc.pipe(fs.createWriteStream(path));
  doc.end();
 }
@@ -158,27 +159,79 @@ function generateFooter(doc, invoice) {
     );
 }
 
-function generateFooters(doc) {
-  doc
-    .fontSize(10)
-    .text(
-    ` Facilities We Provide:\n 
-      - Sofa - Large (3 Seater)
-      - Chair with cover
-      - AC Mini Hall - 01
-      - AC Mandap Hall - 01
-      - Kitchen
-      - Lighting  
-      - Generator (Diesel Not Included)
-      - Open Lawn
-      - VIP Room With Attached Bathroom (AC) - 06
-      - Jaimala Stage With Fixed Decoration - 01
-      - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
-      `,
-      50,
-      550,
-      { align: "left", width: 500 }
-    );
+function generateFooters(doc, invoice) {
+  if(invoice  && invoice.bookingType === 'Wedding') {
+    
+    if(invoice && invoice.dgWithDiesel) {
+      doc
+      .fontSize(10)
+      .text(
+      ` Facilities We Provide:\n 
+        - Sofa - Large (3 Seater)
+        - Chair with cover
+        - AC Mini Hall - 01
+        - AC Mandap Hall - 01
+        - Kitchen
+        - Lighting  
+        - Generator With Diesel
+        - Open Lawn
+        - VIP Room With Attached Bathroom (AC) - 06
+        - Jaimala Stage With Fixed Decoration - 01
+        - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
+        `,
+        50,
+        550,
+        { align: "left", width: 500 }
+      );
+    } else{
+      doc
+      .fontSize(10)
+      .text(
+      ` Facilities We Provide:\n 
+        - Sofa - Large (3 Seater)
+        - Chair with cover
+        - AC Mini Hall - 01
+        - AC Mandap Hall - 01
+        - Kitchen
+        - Lighting  
+        - Generator (Diesel Not Included)
+        - Open Lawn
+        - VIP Room With Attached Bathroom (AC) - 06
+        - Jaimala Stage With Fixed Decoration - 01
+        - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
+        `,
+        50,
+        550,
+        { align: "left", width: 500 }
+      );
+    }
+    
+  } else {
+    if(invoice && invoice.dgWithDiesel) {
+      doc
+      .fontSize(10)
+      .text(
+      ` 
+        - DG Included
+        `,
+        50,
+        550,
+        { align: "left", width: 500 }
+      );
+    } else {
+      doc
+      .fontSize(10)
+      .text(
+      ` 
+        - DG Not Included
+        `,
+        50,
+        550,
+        { align: "left", width: 500 }
+      );
+    }
+  }
+  
 }
 
 

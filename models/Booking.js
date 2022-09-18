@@ -65,6 +65,9 @@ const BookingSchema = mongoose.Schema({
     },
     cancel_date: {
         type: Date
+    },
+    dgWithDiesel: {
+        type: Boolean
     }
 })
 

@@ -21,8 +21,11 @@ const ConfigSchema = mongoose.Schema({
         type: Number
     },
     dgWithDisel: {
+        type: Boolean
+    },
+    engagement: {
         type: Number
-    }
+    },
 })
 
 module.exports = mongoose.model('config', ConfigSchema);

@@ -4,7 +4,7 @@
   "description": "api service for communincating with client",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "Ankit",
   "license": "ISC",
