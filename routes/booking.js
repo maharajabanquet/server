@@ -10,7 +10,6 @@ const router = express.Router();
 var moment = require('moment'); // require
 
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
-console.log(typeof(serverKey));
 
 router.post('/add-booking', (req, res) => {
     

@@ -5,8 +5,12 @@ const fs = require('fs')
 require('dotenv/config')
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const logSymbols = require('log-symbols');
+
+
 
 app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -29,6 +33,10 @@ const tokenRoutes = require('./routes/token');
 // const whatsappRoutes = require('./routes/whatsapp');
 const CommRoutes = require('./routes/communication');
 const TaskRoutes = require('./routes/task');
+const departmentRoute = require('./routes/department');
+const uploadRoutes = require('./routes/upload');
+
+
 
 
 
@@ -45,9 +53,8 @@ app.use('/api/v1/token', tokenRoutes);
 // app.use('/api/v1/whatsapp', whatsappRoutes);
 app.use('/api/v1/coms', CommRoutes);
 app.use('/api/v1/task', TaskRoutes);
-
-
-
+app.use('/api/v1/department', departmentRoute);
+app.use('/api/v1/upload', uploadRoutes)
 
 
 
@@ -59,14 +66,24 @@ app.get('/booking', (req,res) => {
 
 
 
-// Connect To DB
+console.log(logSymbols.info, "Connecting to Database...");
 mongoose.connect(
     process.env.DB_CONNECTION
     , (e) => {
-    console.log('Connected to Database ' + process.env.DB_CONNECTION);
+        console.log(logSymbols.success, 'Database Connection Established...');
+        startServer();
+       
 });
 
-// Listen To Server
-console.log(process.env.PORT);
 
-app.listen(process.env.PORT || 3000);
+function startServer() {
+    app.listen(process.env.PORT, function(request) {
+        console.log(logSymbols.warning,`Server Running On ${process.env.HOSTNAME}:${process.env.PORT}`);
+        if(process.env.ENV === 'local') {
+        console.log(logSymbols.info,`Client Running On ${process.env.HOSTNAME}:4200`);
+
+        }
+    });
+}
+
+

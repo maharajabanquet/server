@@ -6,7 +6,6 @@ var _ = require('lodash');
 
 router.get('/get-config', (req, res) => {
     Config.findOne({}, function(err, result) {
-        console.log(result);
         res.status(200).json({'config': result});
     })
 })
@@ -15,7 +14,6 @@ router.post('/update-config', (req, res) => {
     console.log(req.body);
     Config.update({}, {$set: {[_.camelCase(req.body.name)]: Number(req.body.price)}}, function(err, result) {
         res.status(200).json({'status': 'success'});
-        console.log(result);
     })
 })
 

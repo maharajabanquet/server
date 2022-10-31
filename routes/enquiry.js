@@ -1,11 +1,8 @@
 const express = require('express');
 const Enquiry = require('../models/Enquiry');
 const nodemailer = require('nodemailer');
-
 const router = express.Router();
 require('dotenv/config')
-console.log(process.env.GODADDYEMAIL);
-console.log(process.env.GODADDYPASSWORD);
 
 
   const transporter = nodemailer.createTransport({    
@@ -25,7 +22,6 @@ console.log(process.env.GODADDYPASSWORD);
 });
 
 router.post('/add-enquiry', (req, res) => {
-   console.log(req.body);
    
    const add_enquiry = new Enquiry({
        "firstName": req.body.firstName,

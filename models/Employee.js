@@ -7,32 +7,29 @@ const EmployeeSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    phoneNumber: {
+    contact: {
         type: String,
-    },
-    address: {
-        type: String,
-        required: true,
+        required: true
     },
     department: {
         type: String,
         required: true
     },
-    reportManager: {
+    salary: {
         type: String,
         required: true
     },
-    status: {
+    proof: {
         type: String,
-        value: 'in-active'
+        required: true
     },
-    employmentStartDate: {
-        type: Date,
-        required: true,
+    joiningDate: {
+        type: String,
+        required: true
     },
-    timestamp: {
+    createdOn: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     }
 
 })

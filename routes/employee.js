@@ -15,14 +15,21 @@ router.post('/add-employee', (req, res) => {
 })
 
 router.get('/get-employee-list', (req, res) => {
-    Employee.paginate({}, {page: Number(req.query.pageNo), limit: Number(req.query.pageSize), sort:     { timestamp: -1 }}, function(err, result){
-        res.status(200).json({'success': result});
-    })
+   Employee.find({}, function(err, result) {
+    res.status(200).json({'employeeList': result});
+   })
 })
 
 router.get('/add-task', (req, res) => {
     console.log(res);
     res.status(200).json({'success': true});
 
+})
+
+router.get('/delete-employee', (req, res) => {
+    const contact = req.query.contact;
+    Employee.findOneAndRemove({contact: contact}, function(err, result) {
+        res.status(200).json({'success': true});
+    })
 })
 module.exports = router
