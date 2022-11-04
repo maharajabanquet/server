@@ -27,4 +27,17 @@ router.post('/upload-proof', (req, res) => {
     })
 })
 
+router.post('/upload-customer-id-proof', (req, res) => {
+  let filePath = `../upload/${req.body.employeeName}.png`;
+  let buffer = Buffer.from(req.body.file.split(',')[1], "base64");
+  fs.writeFileSync(path.join(__dirname, filePath), buffer)
+  cloudinary.v2.uploader.upload(`./upload/${req.body.employeeName}.png`, { public_id: `customer_id_proof/${req.body.employeeName}.png` },
+    function (error, result) {
+      res.json({ status: 'success', msg: 'file uploaded', url: result && result.url })
+      fs.unlink(`./upload/${req.body.employeeName}.png`, function (err) {
+        console.log(logSymbols.error, `${filePath} hasbeen removed`);
+      })
+    })
+})
+
 module.exports = router;

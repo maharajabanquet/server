@@ -18,7 +18,7 @@
     "fcm-node": "^1.6.1",
     "jimp": "^0.16.2",
     "lodash": "^4.17.21",
-    "log-symbols": "^4.0.0",
+    "log-symbols": "^4.1.0",
     "moment": "^2.29.4",
     "mongoose": "^6.0.14",
     "ng2-file-upload": "^1.4.0",

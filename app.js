@@ -35,6 +35,8 @@ const CommRoutes = require('./routes/communication');
 const TaskRoutes = require('./routes/task');
 const departmentRoute = require('./routes/department');
 const uploadRoutes = require('./routes/upload');
+const hotelRoutes = require('./routes/hotel');
+
 
 
 
@@ -55,6 +57,8 @@ app.use('/api/v1/coms', CommRoutes);
 app.use('/api/v1/task', TaskRoutes);
 app.use('/api/v1/department', departmentRoute);
 app.use('/api/v1/upload', uploadRoutes)
+app.use('/api/v1/hotel', hotelRoutes)
+
 
 
 
