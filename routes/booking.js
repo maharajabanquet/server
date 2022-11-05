@@ -24,7 +24,7 @@ router.post('/add-booking', (req, res) => {
     req.body['cancel_date'] = cancelDate;
     const add_booking = new Booking(req.body);
     add_booking.save(req.body).then(data => {
-        Config.updateOne({$set: {finalBookingAmount: 150000}}, function(err, success) {
+        Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
             token.find({}, function(err, success) {
                 if(success && success.length > 0) {
                     sendPushNotifcation(success, req.body)
