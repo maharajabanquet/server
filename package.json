@@ -23,6 +23,7 @@
     "mongoose": "^6.0.14",
     "ng2-file-upload": "^1.4.0",
     "node-base64-image": "^2.0.4",
+    "node-schedule": "^2.1.0",
     "nodemailer": "^6.7.6",
     "nodemon": "^2.0.19",
     "pdfkit": "^0.13.0",

@@ -8,7 +8,7 @@ const token = require('../models/Tokens');
 const { ObjectId } = require('mongodb');
 const router = express.Router();
 var moment = require('moment'); // require
-
+const schedule = require('../helpers/schedule');
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 
 router.post('/add-booking', (req, res) => {
@@ -22,19 +22,23 @@ router.post('/add-booking', (req, res) => {
     cancelDate = cancelDate.subtract(10, "days");
     cancelDate = cancelDate.format();
     req.body['cancel_date'] = cancelDate;
-    const add_booking = new Booking(req.body);
-    add_booking.save(req.body).then(data => {
-        Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
-            token.find({}, function(err, success) {
-                if(success && success.length > 0) {
-                    sendPushNotifcation(success, req.body)
-                } 
-            } )
-            res.status(200).json({'success': data});
-        })
-    }).catch(err => {
-        res.status(503).json({'error': 'Internal Server Error'})
-    })
+    // const add_booking = new Booking(req.body);
+    schedule(req.body['cancel_date'])
+    console.log(req.body['bookingDate']);
+    res.status(200).json({'success': true});
+    // add_booking.save(req.body).then(data => {
+    //     Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
+    //         token.find({}, function(err, success) {
+    //             if(success && success.length > 0) {
+    //                 schedule(req.body['cancel_date'])
+    //                 sendPushNotifcation(success, req.body)
+    //             } 
+    //         } )
+    //         res.status(200).json({'success': data});
+    //     })
+    // }).catch(err => {
+    //     res.status(503).json({'error': 'Internal Server Error'})
+    // })
 })
 
 

@@ -36,6 +36,7 @@ const TaskRoutes = require('./routes/task');
 const departmentRoute = require('./routes/department');
 const uploadRoutes = require('./routes/upload');
 const hotelRoutes = require('./routes/hotel');
+const cashInflowRoutes = require('./routes/cash_inflow');
 
 
 
@@ -58,6 +59,8 @@ app.use('/api/v1/task', TaskRoutes);
 app.use('/api/v1/department', departmentRoute);
 app.use('/api/v1/upload', uploadRoutes)
 app.use('/api/v1/hotel', hotelRoutes)
+app.use('/api/v1/cashinflow', cashInflowRoutes)
+
 
 
 
