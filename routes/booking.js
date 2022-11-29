@@ -23,22 +23,22 @@ router.post('/add-booking', (req, res) => {
     cancelDate = cancelDate.format();
     req.body['cancel_date'] = cancelDate;
     // const add_booking = new Booking(req.body);
-    schedule(req.body['cancel_date'])
-    console.log(req.body['bookingDate']);
-    res.status(200).json({'success': true});
-    // add_booking.save(req.body).then(data => {
-    //     Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
-    //         token.find({}, function(err, success) {
-    //             if(success && success.length > 0) {
-    //                 schedule(req.body['cancel_date'])
-    //                 sendPushNotifcation(success, req.body)
-    //             } 
-    //         } )
-    //         res.status(200).json({'success': data});
-    //     })
-    // }).catch(err => {
-    //     res.status(503).json({'error': 'Internal Server Error'})
-    // })
+    // schedule(req.body['cancel_date'])
+    // console.log(req.body['bookingDate']);
+    // res.status(200).json({'success': true});
+    add_booking.save(req.body).then(data => {
+        Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
+            token.find({}, function(err, success) {
+                if(success && success.length > 0) {
+                    schedule(req.body['cancel_date'])
+                    sendPushNotifcation(success, req.body)
+                } 
+            } )
+            res.status(200).json({'success': data});
+        })
+    }).catch(err => {
+        res.status(503).json({'error': 'Internal Server Error'})
+    })
 })
 
 
