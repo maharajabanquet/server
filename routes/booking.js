@@ -22,7 +22,7 @@ router.post('/add-booking', (req, res) => {
     cancelDate = cancelDate.subtract(10, "days");
     cancelDate = cancelDate.format();
     req.body['cancel_date'] = cancelDate;
-    // const add_booking = new Booking(req.body);
+    const add_booking = new Booking(req.body);
     // schedule(req.body['cancel_date'])
     // console.log(req.body['bookingDate']);
     // res.status(200).json({'success': true});
