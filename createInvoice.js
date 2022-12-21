@@ -44,7 +44,7 @@ function generateCustomerInformation(doc, invoice) {
     .font("Helvetica-Bold")
     .text(invoice.invoice_nr, 150, customerInformationTop)
     .font("Helvetica")
-    .text("Invoice Date:", 50, customerInformationTop + 15)
+    .text("Estimate Date:", 50, customerInformationTop + 15)
     .text(formatDate(new Date()), 150, customerInformationTop + 15)
     .text("Booking Date:", 50, customerInformationTop + 30)
     .text(
