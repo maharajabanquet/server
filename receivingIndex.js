@@ -1,31 +1,30 @@
-const { createInvoice } = require("./createInvoice.js");
+require('dotenv/config')
+const { createInvoice } = require("./createReceiving.js");
+const express = require('express');
+const router = express.Router();
+const fs = require('fs');
 
-const invoice = {
-  shipping: {
-    name: "John Doe",
-    address: "1234 Main Street",
-    city: "San Francisco",
-    state: "CA",
-    country: "US",
-    postal_code: 94111
-  },
-  items: [
-    {
-      item: "TC 100",
-      description: "Toner Cartridge",
-      quantity: 2,
-      amount: 6000
-    },
-    {
-      item: "USB_EXT",
-      description: "USB Cable Extender",
-      quantity: 1,
-      amount: 2000
-    }
-  ],
-  subtotal: 8000,
-  paid: 0,
-  invoice_nr: 1234
-};
 
-createInvoice(invoice, "receiving.pdf");
+router.post('/create_receiving_slip',async (req, res) => {
+  const body = req && req.body;
+   const payload = {
+     date: body.date,
+    name: body.name,
+    address: body.address,
+    mobileNumber: body.mobileNumber,
+    securityDeposit: body.securityDeposit,
+    items: body.items
+   }
+  const invoice = payload
+  createInvoice(invoice, "receiving.pdf",  res);
+  setTimeout( () => {
+        const file = fs.readFileSync('receiving.pdf', 'binary')
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=receiving.pdf');
+        res.write(file, 'binary');
+        res.end();
+  }, 1000)  
+})
+
+
+module.exports = router;

@@ -29,6 +29,8 @@ const configRoutes = require('./routes/config');
 const employeeRoutes = require('./routes/employee');
 const authRoutes = require('./routes/auth');
 const pdfkitRoutes = require('./invokeInvoicePrint');
+const receivingPdfRoutes = require('./receivingIndex');
+
 const trafficRoutes = require('./routes/traffic')
 const LaganRoutes = require('./routes/lagan');
 const tokenRoutes = require('./routes/token');
@@ -64,6 +66,7 @@ app.use('/api/v1/upload', uploadRoutes)
 app.use('/api/v1/hotel', hotelRoutes)
 app.use('/api/v1/cashinflow', cashInflowRoutes)
 app.use('/api/v1/receiving', Receiving)
+app.use('/api/v1/receiving/generate', receivingPdfRoutes)
 
 
 // Auth
