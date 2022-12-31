@@ -87,7 +87,6 @@ router.get('/confirm-booking', (req, res) => {
 
 function sendPushNotifcation(ids, bookingDate) {
     let token_list = []
-    console.log();
     ids.forEach(element => {
         token_list.push(element.fcm_token)
     });
@@ -144,6 +143,8 @@ router.post('/settle-booking',(req,res) => {
         }
     })
 })
+
+router.get('/get-')
 
 
 module.exports = router
