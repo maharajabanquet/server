@@ -31,7 +31,7 @@ function generateCustomerInformation(doc, invoice) {
   doc
     .fillColor("#444444")
     .fontSize(20)
-    .text("Invoice", 50, 160);
+    .text("Estimate", 50, 160);
 
   generateHr(doc, 185);
   generateHr(doc, 188);
@@ -40,11 +40,11 @@ function generateCustomerInformation(doc, invoice) {
 
   doc
     .fontSize(10)
-    .text("Invoice Number:", 50, customerInformationTop)
+    .text("Estimate Number:", 50, customerInformationTop)
     .font("Helvetica-Bold")
     .text(invoice.invoice_nr, 150, customerInformationTop)
     .font("Helvetica")
-    .text("Invoice Date:", 50, customerInformationTop + 15)
+    .text("Estimate Date:", 50, customerInformationTop + 15)
     .text(formatDate(new Date()), 150, customerInformationTop + 15)
     .text("Booking Date:", 50, customerInformationTop + 30)
     .text(

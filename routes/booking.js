@@ -22,7 +22,7 @@ router.post('/add-booking', (req, res) => {
     cancelDate = cancelDate.subtract(10, "days");
     cancelDate = cancelDate.format();
     req.body['cancel_date'] = cancelDate;
-    // const add_booking = new Booking(req.body);
+    const add_booking = new Booking(req.body);
     // schedule(req.body['cancel_date'])
     // console.log(req.body['bookingDate']);
     // res.status(200).json({'success': true});
@@ -87,7 +87,6 @@ router.get('/confirm-booking', (req, res) => {
 
 function sendPushNotifcation(ids, bookingDate) {
     let token_list = []
-    console.log();
     ids.forEach(element => {
         token_list.push(element.fcm_token)
     });
@@ -144,6 +143,8 @@ router.post('/settle-booking',(req,res) => {
         }
     })
 })
+
+router.get('/get-')
 
 
 module.exports = router

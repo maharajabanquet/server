@@ -43,18 +43,18 @@ router.post('/generate_invoice',async (req, res) => {
         bookingType: req.body.requirements
       };
       
-      createInvoice(invoice, "invoice.pdf", res)
+      createInvoice(invoice, "estimate.pdf", res)
     
       bookingSchema.findOneAndUpdate({phoneNumber: req.body.phoneNumber}, {$set: {invoice_generated: true, invoice_number: `${counter}_MB_${new Date().getUTCFullYear()}`}}).then((a) => {
-        console.log("Invoice updated");
+        console.log("estimate updated");
       })
 
         setTimeout( () => {
-            cloudinary.v2.uploader.upload("invoice.pdf", {public_id: req.body.phoneNumber}, 
+            cloudinary.v2.uploader.upload("estimate.pdf", {public_id: req.body.phoneNumber}, 
             function(error, result) {
-                const file = fs.readFileSync('invoice.pdf', 'binary')
+                const file = fs.readFileSync('estimate.pdf', 'binary')
                 res.setHeader('Content-Type', 'application/pdf');
-                res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');
+                res.setHeader('Content-Disposition', 'attachment; filename=estimate.pdf');
                 res.write(file, 'binary');
                 res.end();
              });

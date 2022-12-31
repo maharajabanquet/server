@@ -25,7 +25,7 @@ const HotelSchema = mongoose.Schema({
         type: String,
         required: true
     },
-   
+
 })
 // EmployeeSchema.plugin(autoIncrement.plugin, 'employee');
 module.exports = mongoose.model('hotel', HotelSchema);
