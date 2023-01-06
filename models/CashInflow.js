@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 const CashInflowSchema = mongoose.Schema({
   partyName: String,
@@ -7,5 +8,5 @@ const CashInflowSchema = mongoose.Schema({
   amount: Number,
   remarks: String
 })
-
+CashInflowSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('cashinflow', CashInflowSchema)

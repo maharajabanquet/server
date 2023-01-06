@@ -39,9 +39,12 @@ router.post('/add-enquiry', (req, res) => {
 })
 
 router.get('/view-all-enquiry', (req, res) => {
-    Enquiry.find({}, function(err, result){
+    Enquiry.paginate({}, {page: Number(req.query.pageNo), limit: Number(req.query.pageSize), sort:     { timestamp: -1 }}, function(err, result){
         res.status(200).json({'success': result});
     })
+    // Enquiry.find({}, function(err, result){
+    //     res.status(200).json({'success': result});
+    // })
 })
 
 router.post('/contact-us', (req, res) => {
