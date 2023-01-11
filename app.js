@@ -165,7 +165,7 @@ app.get('/booking', (req,res) => {
     res.sendFile(process.cwd()+"/dist/maharaja/index.html")
   });
 
-app.use(express.static(process.cwd()+"/www/"));
+
 app.get('/tabs/tab2', (req,res) => {
     res.sendFile(process.cwd()+"/www/index.html")
   });
