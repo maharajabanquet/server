@@ -15,9 +15,16 @@ router.get('/get-cash-inflow', (req, res) => {
     // CashInflow.find({}, function(err, result) {
     //     res.status(200).json({data: result})
     // })
-    CashInflow.paginate({}, {page: Number(req.query.pageNo), limit: Number(req.query.pageSize)}, function(err, result){
-        res.status(200).json({'data': result});
-    })
+    const paginate = req && req.query && req.query.paginate;
+    if(paginate) {
+        CashInflow.find({}, function(err, result) {
+            res.status(200).json({'data': result});
+        })
+    } else {
+        CashInflow.paginate({}, {page: Number(req.query.pageNo), limit: Number(req.query.pageSize)}, function(err, result){
+            res.status(200).json({'data': result});
+        })
+    }
 })
 
 router.get('/deletecashflow', (req, res) => {
