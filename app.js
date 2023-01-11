@@ -9,6 +9,8 @@ const logSymbols = require('log-symbols');
 const User = require("./models/User");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+const morgan = require("morgan");
+app.use(morgan('dev'));
 
 
 app.use(bodyParser.json({limit: '50mb'}));
