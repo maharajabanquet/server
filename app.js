@@ -44,7 +44,7 @@ const uploadRoutes = require('./routes/upload');
 const hotelRoutes = require('./routes/hotel');
 const cashInflowRoutes = require('./routes/cash_inflow');
 const Receiving = require('./routes/receiving');
-const Inventory = require('./routes/Inventory');
+const Inventory = require('./routes/inventory');
 
 
 
