@@ -26,6 +26,9 @@ const ConfigSchema = mongoose.Schema({
     engagement: {
         type: Number
     },
+    securityDepositCharges: {
+        type: Number,
+    }
 })
 
 module.exports = mongoose.model('config', ConfigSchema);

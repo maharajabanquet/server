@@ -1,6 +1,22 @@
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
 
+
+function removeComma(number) {
+  console.log(number);
+  if(number.length > 1) {
+    let result=number.replace(/\,/g,''); // 1125, but a string, so convert it to number
+    result = parseInt(result,10);
+    return result;
+  } else {
+    return number
+  }
+}
+function numberWithCommas(x) {
+  console.log("CHECK " ,x);
+    return x.toString().split('.')[0].length > 3 ? x.toString().substring(0,x.toString().split('.')[0].length-3).replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + x.toString().substring(x.toString().split('.')[0].length-3): x.toString();
+    
+}
 function createInvoice(invoice, path) {
   let doc = new PDFDocument({ size: "A4", margin: 50 });
   generateHeader(doc);
@@ -8,6 +24,8 @@ function createInvoice(invoice, path) {
   generateFooters(doc, invoice)
   generateInvoiceTable(doc, invoice);
   generateFooter(doc, invoice);
+  metaInfo(doc)
+  
 
  doc.pipe(fs.createWriteStream(path));
  doc.end();
@@ -99,9 +117,9 @@ function generateInvoiceTable(doc, invoice) {
       position,
       item.item,
       "",
-      formatCurrency(item.amount / item.quantity),
+      formatCurrency(removeComma(item.amount) / removeComma(item.quantity)),
       item.quantity,
-      formatCurrency(item.amount)
+      formatCurrency(removeComma(item.amount))
     );
 
     generateHr(doc, position + 20);
@@ -141,7 +159,7 @@ function generateInvoiceTable(doc, invoice) {
     "",
     "Balance Due",
     "",
-    formatCurrency(invoice.subtotal - invoice.paid)
+    formatCurrency(removeComma(invoice.subtotal) - removeComma(invoice.paid))
   );
   doc.font("Helvetica");
 }
@@ -159,80 +177,55 @@ function generateFooter(doc, invoice) {
     );
 }
 
-function generateFooters(doc, invoice) {
-  if(invoice  && invoice.bookingType === 'Wedding') {
-    
-    if(invoice && invoice.dgWithDiesel) {
-      doc
-      .fontSize(10)
-      .text(
-      ` Facilities We Provide:\n 
-        - Sofa - Large (3 Seater)
-        - Chair with cover
-        - AC Mini Hall - 01
-        - AC Mandap Hall - 01
-        - Kitchen
-        - Lighting  
-        - Generator With Diesel
-        - Open Lawn
-        - VIP Room With Attached Bathroom (AC) - 06
-        - Jaimala Stage With Fixed Decoration - 01
-        - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
-        `,
-        50,
-        550,
-        { align: "left", width: 500 }
-      );
-    } else{
-      doc
-      .fontSize(10)
-      .text(
-      ` Facilities We Provide:\n 
-        - Sofa - Large (3 Seater)
-        - Chair with cover
-        - AC Mini Hall - 01
-        - AC Mandap Hall - 01
-        - Kitchen
-        - Lighting  
-        - Generator (Diesel Not Included)
-        - Open Lawn
-        - VIP Room With Attached Bathroom (AC) - 06
-        - Jaimala Stage With Fixed Decoration - 01
-        - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
-        `,
-        50,
-        550,
-        { align: "left", width: 500 }
-      );
-    }
-    
-  } else {
-    if(invoice && invoice.dgWithDiesel) {
-      doc
-      .fontSize(10)
-      .text(
-      ` 
-        - DG Included
-        `,
-        50,
-        550,
-        { align: "left", width: 500 }
-      );
-    } else {
-      doc
-      .fontSize(10)
-      .text(
-      ` 
-        - DG Not Included
-        `,
-        50,
-        550,
-        { align: "left", width: 500 }
-      );
-    }
-  }
-  
+
+function metaInfo(doc) {
+  doc
+  .font('./Kalam-Regular.ttf')
+    .fillColor("#444444")
+    .fontSize(16)
+    .text("TERMS AND CONDITIONS:-", 50, 800)
+    .fontSize(16)
+    .text("(1) तिथि से एक सप्ताह पहले पूरा भुगतान करें ।", 50, 80)
+    .fontSize(16)
+    .text(`(2) मानक ध्वनि पर साउंड बॉक्स के द्वारा रात्रि 10 बजे तक संगीत बजाने की अनुमति है । उलंधन करने पर इसके लिए पार्टी स्वयं जिम्मेवार होंगे। ।`, 50, 120)
+    .fontSize(16)
+    .text("(3) समान लेने तथा देने समय समान को मिला लें ।", 50, 180)
+    .fontSize(16)
+    .text("(4) शादी या उत्सव में महाराजा वेंकट हॉल का  वर्तन  प्राप्त करने से पहले सरक्यूरिटी मनी जमा करना होगा तथा वर्तन का सफाई खर्च पार्टी को देय होगा अन्यथा वर्तन नही मिलेगा ।  काम खत्म होने के बाद वर्तन वापस करने के बाद सफाई खर्च ₹1000/- काटने के बाद सिक्युरिटी मनी वापस हो जाएगा ।", 50, 210)
+    .fontSize(16)
+    .text(`(5) मानक ध्वनि पर साउंड बॉक्स के द्वारा रात्रि 10 बजे तक संगीत बजाने की अनुमति है । उलंधन करने पर इसके लिए पार्टी स्वयं जिम्मेवार होंगे। ।`, 50, 320)
+    .fontSize(16)
+    .text(`(6) किसी भी अनजान या अवांक्षित मेहमान या ब्यक्ति दिखाई दे तो तुरंत आप प्रबंधक , महाराजा बैंकेट हॉल को सूचित करें ।`, 50, 380)
+    generateHr(doc, 190, false);
+
 }
+
+function generateFooters(doc, invoice) {
+    
+  doc
+  .fontSize(10)
+  .text(
+  ` Facilities We Provide:\n 
+    - Sofa - Large (3 Seater)
+    - Chair with cover
+    - AC Mini Hall - 01
+    - AC Mandap Hall - 01
+    - Kitchen
+    - Lighting  
+    - Generator With Diesel
+    - Open Lawn
+    - VIP Room With Attached Bathroom (AC) - 06
+    - Jaimala Stage With Fixed Decoration - 01
+    - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
+    - Buffet Table
+    - Buffet Bartan ( 9 Handi Set, 9 Gamla, 10 Serving Spoon, 5 Tray, 5 Dekchi)
+    `,
+    50,
+    550,
+    { align: "left", width: 500 }
+  );
+}
+  
 
 
 function generateTableRow(
@@ -253,18 +246,30 @@ function generateTableRow(
     .text(lineTotal, 0, y, { align: "right" });
 }
 
-function generateHr(doc, y) {
-  doc
+function generateHr(doc, y, required=true) {
+  if(required) {
+    doc
     .strokeColor("#aaaaaa")
     .lineWidth(1)
     .moveTo(50, y)
     .lineTo(550, y)
     .stroke();
+  } else {
+    doc
+    .strokeColor("#aaaaaa")
+    .lineWidth(1)
+    .moveTo(50, y)
+    .lineTo(550, y)
+  }
+
+   
+   
 }
 
 
 function formatCurrency(cents) {
-  return "Rs." + cents
+  let num  = numberWithCommas(cents)
+  return "Rs." + num
 }
 
 function formatDate(date) {

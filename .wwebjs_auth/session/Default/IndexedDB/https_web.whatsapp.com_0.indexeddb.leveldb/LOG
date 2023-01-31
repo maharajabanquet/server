@@ -1,9 +1,0 @@
-2022/09/13-11:47:17.096 4e28 Reusing MANIFEST E:\Maharaja Banquet\server\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2022/09/13-11:47:17.096 4e28 Recovering log #91
-2022/09/13-11:47:17.179 4e28 Reusing old log E:\Maharaja Banquet\server\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000091.log 
-2022/09/13-11:47:31.012 522c Level-0 table #98: started
-2022/09/13-11:47:31.165 522c Level-0 table #98: 1159974 bytes OK
-2022/09/13-11:47:31.185 522c Delete type=0 #91
-2022/09/13-11:47:32.250 2230 Compacting 1@1 + 3@2 files
-2022/09/13-11:47:32.484 2230 Generated table #99@1: 28474 keys, 2258752 bytes
-2022/09/13-11:47:32.669 2230 Generated table #100@1: 49552 keys, 2271922 bytes

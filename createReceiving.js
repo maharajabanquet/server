@@ -25,7 +25,6 @@ function generateHeader(doc) {
     .text("Near Mawesi Hospital", 200, 65, { align: "right" })
     .text("P.O: Raxaul, Bihar, 845305", 200, 80, { align: "right" })
     .text("Phone Number: +919572177693", 200, 95, { align: "right" })
-
     .moveDown();
     
 }
@@ -63,24 +62,32 @@ function generateCustomerInformation(doc, invoice) {
   generateHr(doc, 252);
 }
 
+function numberWithCommas(x) {
+  if(x) {
+    return x.toString().split('.')[0].length > 3 ? x.toString().substring(0,x.toString().split('.')[0].length-3).replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + x.toString().substring(x.toString().split('.')[0].length-3): x.toString();
+  }  else {
+    return 0
+  }
+}
+
 
 function metaInfo(doc) {
   doc
   .font('./Kalam-Regular.ttf')
     .fillColor("#444444")
     .fontSize(12)
-    .text("नोट:-", 50, 450)
+    .text("नोट:-", 50, 900)
     .fontSize(12)
-    .text("(1) वर्तन / समानों की टुट फुट कि जिम्मेवारी  पार्टी / प्राप्तकर्ता की होगी। टुटे पाये वर्तन / समानो का कीमत देय होगा ।", 50, 470)
+    .text("(1) वर्तन / समानों की टुट फुट कि जिम्मेवारी  पार्टी / प्राप्तकर्ता की होगी। टुटे पाये वर्तन / समानो का कीमत देय होगा ।", 50, 100)
     .fontSize(12)
-    .text("(2) वर्तन को साफ कराके वापस करने की जिम्मेवारी पार्टी को होगी । सफाई नही कराने पर इरुप मे रु0- 1000/- अलग से देय होगा, जो सेक्युरिटी रुपया से वसुला जा सकता है ।", 50, 510)
+    .text(`(2) वर्तन को साफ कराके वापस करने की जिम्मेवारी पार्टी को होगी । सफाई नही कराने पर इरुप मे रु0- ${numberWithCommas(1000)}/- अलग से देय होगा, जो सेक्युरिटी रुपया से वसुला जा सकता है ।`, 50, 150)
     .fontSize(12)
-    .text("(3) समान लेने तथा देने समय समान को मिला लें ।", 50, 550)
+    .text("(3) समान लेने तथा देने समय समान को मिला लें ।", 50, 200)
     .fontSize(12)
-    .text("प्राप्तकर्ता का हस्ताक्षर",50, 650, { align: "right" })
+    .text("प्राप्तकर्ता का हस्ताक्षर",50, 250, { align: "right" })
    
     
-    generateHr(doc, 185);
+    generateHr(doc, 280);
 
  
 }

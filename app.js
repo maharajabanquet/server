@@ -44,6 +44,8 @@ const uploadRoutes = require('./routes/upload');
 const hotelRoutes = require('./routes/hotel');
 const cashInflowRoutes = require('./routes/cash_inflow');
 const Receiving = require('./routes/receiving');
+const Inventory = require('./routes/Inventory');
+
 
 
 
@@ -69,6 +71,8 @@ app.use('/api/v1/hotel', hotelRoutes)
 app.use('/api/v1/cashinflow', cashInflowRoutes)
 app.use('/api/v1/receiving', Receiving)
 app.use('/api/v1/receiving/generate', receivingPdfRoutes)
+app.use('/api/v1/inventory', Inventory)
+
 
 
 // Auth

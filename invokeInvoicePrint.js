@@ -12,6 +12,15 @@ cloudinary.config({
     api_key: process.env.API_KEY, 
     api_secret: process.env.API_SECRET 
   });
+function numberWithCommas(x) {
+  if(x) {
+    return x.toString().split('.')[0].length > 3 ? x.toString().substring(0,x.toString().split('.')[0].length-3).replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + x.toString().substring(x.toString().split('.')[0].length-3): x.toString();
+  }  else {
+    return 0
+  }
+}
+
+
 
 router.post('/generate_invoice',async (req, res) => {
   let counter;
@@ -32,7 +41,7 @@ router.post('/generate_invoice',async (req, res) => {
             item: req.body.requirements,
             description: "Booking Confirmed",
             quantity: 1,
-            amount: req.body.finalAmount
+            amount: numberWithCommas(req.body.finalAmount)
           },
         ],
         subtotal: req.body.finalAmount,
