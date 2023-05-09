@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-form-data": "^2.0.22",
     "fcm-node": "^1.6.1",
     "jimp": "^0.16.2",
     "jsonwebtoken": "^8.5.1",

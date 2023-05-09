@@ -144,7 +144,32 @@ router.post('/settle-booking',(req,res) => {
     })
 })
 
-router.get('/get-')
+router.post('/add-expense',(req,res) => {
+    const _id = new ObjectId(req.body._id);
+    Booking.findById({_id: _id}, function(err, data) {
+        console.log(data);
+        if(!data) {
+            res.status(404).json({"status": "Booking not found"});
+            return;
+        } else {
+            const query = {_id: _id};
+            const expenseSheetUrl = req && req.body && req.body.url;
+            const toUpdate = {'expense_sheet': expenseSheetUrl}
+            console.log(toUpdate);
+            Booking.findByIdAndUpdate(query, {$set: toUpdate}, function(err, data) {
+                console.log(err);
+                console.log(data);
+                if(err) {
+                    res.status(503).json({"status": "Failed To Update"}); 
+                    return;
+                }
+                res.status(200).json({"status": 'Updated !!!'})
+            })
+
+        }
+    })
+})
+
 
 
 module.exports = router

@@ -68,6 +68,9 @@ const BookingSchema = mongoose.Schema({
     },
     dgWithDiesel: {
         type: Boolean
+    },
+    expense_sheet: {
+        type: String
     }
 })
 
