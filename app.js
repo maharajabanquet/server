@@ -45,6 +45,9 @@ const hotelRoutes = require('./routes/hotel');
 const cashInflowRoutes = require('./routes/cash_inflow');
 const Receiving = require('./routes/receiving');
 const Inventory = require('./routes/inventory');
+const Service = require('./routes/service');
+const AppUser = require('./routes/app_user');
+
 
 
 
@@ -72,6 +75,10 @@ app.use('/api/v1/cashinflow', cashInflowRoutes)
 app.use('/api/v1/receiving', Receiving)
 app.use('/api/v1/receiving/generate', receivingPdfRoutes)
 app.use('/api/v1/inventory', Inventory)
+app.use('/api/v1/service', Service)
+app.use('/api/v1/app-user', AppUser)
+
+
 
 
 
