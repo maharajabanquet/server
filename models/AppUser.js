@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 
 const AppUserSchema = mongoose.Schema({
+    id: {
+        type: {
+            String
+        }
+    },
     mobile: {
         type: String
     },
