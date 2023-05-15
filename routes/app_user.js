@@ -1,7 +1,9 @@
 const express = require('express');
 const AppUser = require('../models/AppUser');
-
+const token = require('../models/Tokens');
+const FCM = require('fcm-node');
 const router = express.Router();
+const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 
 router.post('/login', (req, res) => {
     mobile = req.body.mobile;
@@ -61,5 +63,50 @@ router.post('/update', (req, res) => {
 
    })
 })
+
+router.post('/send_notification', (req, res) => {
+    token.find({}, function(err, success) {
+        if(success && success.length > 0) {
+            sendPushNotifcation(success, req.body)
+        } 
+    } )
+    res.status(200).json({'msg': 'Ok'})
+
+})
+
+
+    
+function sendPushNotifcation(ids, metaInfo) {
+    let token_list = []
+    ids.forEach(element => {
+        token_list.push(element.fcm_token)
+    });
+    console.log(token_list);
+    const message = {
+        registration_ids: token_list ,  // array required
+        notification: {
+            title: metaInfo.title ,
+            body: metaInfo.body,
+            sound:  "default",
+            icon: "ic_launcher",
+            badge: "1",
+            click_action: 'FCM_PLUGIN_ACTIVITY',
+            image: 'https://res.cloudinary.com/maharaja-banquet/image/upload/v1661863652/Maharaja-Banquet_SOCIAL-MEDIA_fnigtt.jpg'
+        },
+        priority: 'high',
+        data: {
+            action:"", // Action Type
+            payload:"" // payload
+        },
+    }
+    const fcm = new FCM(serverKey);
+    fcm.send(message, (err, response) => {
+        if (err) {
+           console.log("FCM ERROR ", err);
+        } else {
+            console.log("Successfully sent with response: ", response);
+        }
+    })
+}
 
 module.exports = router;

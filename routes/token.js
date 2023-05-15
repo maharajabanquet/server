@@ -3,16 +3,16 @@ const Token = require('../models/Tokens');
 const router = express.Router();
 
 router.post('/add_tokens', (req, res) => {
-    const device_id = req && req.body && req.body.device_id;
     const fcm_token = req && req.body && req.body.fcm_token;
-    console.log(device_id);
-    console.log(fcm_token);
-    Token.findOneAndUpdate({'device_id': device_id}, {$set: {'fcm_token': fcm_token, 'admin': false}}, function(err, success) {
-        if(!success) {
+    const addToken = new Token({'fcm_token': fcm_token, 'admin': false})
+    addToken.save({'fcm_token': fcm_token, 'admin': false}).then(result => {
+        if(!result)   {
             res.status(200).json({status: false});
             return;
-        }
-        res.status(200).json({status: true, docs: success})
+        } 
+        res.status(200).json({status: true, docs: result})
+
+
     })
 })
 
