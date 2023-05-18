@@ -6,6 +6,7 @@ const router = express.Router();
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 
 router.post('/login', (req, res) => {
+    console.log(req.body);
     mobile = req.body.mobile;
     password = req.body.password;
     console.log(mobile);
