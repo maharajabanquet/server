@@ -1,0 +1,90 @@
+{
+    "mobile": "",
+    "userName": "",
+    "password": "",
+    "dateOfBooking": "",
+    "payment": 0,
+    "cart": [
+      {
+        "_id": "645f32244c440597d142d72d",
+        "id": "0",
+        "category": "Tent",
+        "discription": "Center Table, Steel Chair, ...",
+        "img": "https://5.imimg.com/data5/VD/KL/PS/SELLER-9029459/marriage-hall-chair-500x500.jpg",
+        "categoryList": [
+          {
+            "itemName": "Plastic Chair",
+            "price": 5,
+            "quantity": 100,
+            "orderQuant": 0
+          },
+          {
+            "itemName": "Steel Chair with Cover",
+            "price": 25,
+            "quantity": 100,
+            "orderQuant": 0
+          },
+          {
+            "itemName": "Center Table",
+            "price": 100,
+            "quantity": 5,
+            "orderQuant": 0
+          }
+        ]
+      },
+      {
+        "_id": "645f329b4c440597d142d72f",
+        "id": "1",
+        "category": "Catering",
+        "discription": "Plates & Spoon, ...",
+        "img": "https://i.pinimg.com/originals/a7/41/0d/a7410d1c429840ab6d883347a8c9c59c.jpg",
+        "categoryList": [
+          {
+            "itemName": "Coffee Tea Machine",
+            "price": 2000,
+            "quantity": 1,
+            "orderQuant": 0
+          },
+          {
+            "itemName": "Plates & Spoon",
+            "price": 5,
+            "quantity": 225,
+            "orderQuant": 0
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "645f32a54c440597d142d731",
+        "id": "2",
+        "category": "Bablu Sound DJ",
+        "discription": "Lights, DJ, ...",
+        "img": "https://res.cloudinary.com/maharaja-banquet/image/upload/v1684142279/babluSoundDj_xkr3h7.jpg",
+        "categoryList": [
+          {
+            "itemName": "Bablu Sound DJ",
+            "price": 6000,
+            "quantity": 1,
+            "orderQuant": 0
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "645f32b44c440597d142d733",
+        "id": "3",
+        "category": "Party Props",
+        "discription": "Pyro gun, ...",
+        "img": "https://5.imimg.com/data5/ANDROID/Default/2022/7/PK/AS/FW/120886659/product-jpeg-500x500.jpg",
+        "categoryList": [
+          {
+            "itemName": "Pyro Gun",
+            "price": 250,
+            "quantity": 4,
+            "orderQuant": 0
+          }
+        ]
+      }
+    ],
+    "__v": 0
+  }

@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "07c250e4-2768-4cb0-b0ad-490730b1dc45",
+		"name": "Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/v1/token/add_tokens",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fcm_token\": \"fRSEImfRTy-Hg845KNjZ70:APA91bGQlJczUvCO6la-6xF8ePG1SROb_D245MU5JphBzcNINey2LERGMMY7nCqjJwFMMrMSeS9yd4eKK4JZZePwUZNUOt2FOsa8lrZZnAUtcm_oyZK6RiMXUi2GxwdP2ohc-VIqytz5\"\r\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/token/add_tokens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"token",
+						"add_tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://maharajaraxaul.com//api/v1/app-user/send_notification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Testing\",\r\n    \"body\": \"Hello\",\r\n    \"img\": \"https://res.cloudinary.com/maharaja-banquet/image/upload/v1661863652/Maharaja-Banquet_SOCIAL-MEDIA_fnigtt.jpg'\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://maharajaraxaul.com//api/v1/app-user/send_notification",
+					"protocol": "http",
+					"host": [
+						"maharajaraxaul",
+						"com"
+					],
+					"path": [
+						"",
+						"api",
+						"v1",
+						"app-user",
+						"send_notification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/invoice/generate_invoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"bookingDate\":\"1/17/2023\",\"firstName\":\"Rahul\",\"lastName\":\"Kashyap\",\"phoneNumber\":\"8970777693\",\"address\":\"sdfhsduig\",\"requirements\":\"Engagement\",\"BookingAmount\":20000,\"finalAmount\":100000,\"balancedAmount\":80000,\"facilities\":[],\"status\":\"approved\",\"dgWithDiesel\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/invoice/generate_invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"invoice",
+						"generate_invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.14:3000/api/v1/token/get-token?device_id=5247231a-a08d-415b-a1ff-89c7b7a723c7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\": \"5247231a-a08d-415b-a1ff-89c7b7a723c7\",\r\n    \"fcm_token\": \"elqigjqIR8qPpo6h-fv8Y_:APA91bFMBQ34hDWEAOOPDBAmT27e0L-c8XYsb0Ii-tiBU-_pHQw136A5XLJQoE3c1L6s2coJSnRDLaZv_UDdgL2FllGmnbnxxLjHJePbhdxZy-usRrs028XAja-a8So8qEavl2e5lieK\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.14:3000/api/v1/token/get-token?device_id=5247231a-a08d-415b-a1ff-89c7b7a723c7",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"14"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"token",
+						"get-token"
+					],
+					"query": [
+						{
+							"key": "device_id",
+							"value": "5247231a-a08d-415b-a1ff-89c7b7a723c7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/coms/whatsapp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"whatsapp\": true\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/coms/whatsapp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"coms",
+						"whatsapp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://maharajabanquet.herokuapp.com/api/v1/booking/add-booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookingDate\": \"8/30/2022\",\r\n    \"firstName\": \"Praveen\",\r\n    \"lastName\": \"Kumar\",\r\n    \"phoneNumber\": \"8970777693\",\r\n    \"address\": \"Ankit kumar\",\r\n    \"requirements\": \"Marriage or reception\",\r\n    \"BookingAmount\": \"20000\",\r\n    \"finalAmount\": 150000,\r\n    \"balancedAmount\": 130000,\r\n    \"facilities\": [],\r\n    \"status\": \"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://maharajabanquet.herokuapp.com/api/v1/booking/add-booking",
+					"protocol": "https",
+					"host": [
+						"maharajabanquet",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"booking",
+						"add-booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.14:3000/api/v1/booking/send-push",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"notificationTitle\": \"Hello Ankit\",\r\n    \"notificationBody\": \"Booking has been done\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.14:3000/api/v1/booking/send-push",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"14"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"booking",
+						"send-push"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/coms/check-com",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": false,\r\n    \"name\": \"whatsapp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/coms/check-com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"coms",
+						"check-com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1//api/v1/task/send-whatasapp-message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"_id\":\"6315c2a7c303fb5fd7279604\"}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1//api/v1/task/send-whatasapp-message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"",
+						"api",
+						"v1",
+						"task",
+						"send-whatasapp-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.14:3000/api/v1/task/get-task",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.1.14:3000/api/v1/task/get-task",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"14"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"task",
+						"get-task"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

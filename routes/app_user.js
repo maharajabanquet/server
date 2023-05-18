@@ -92,7 +92,7 @@ function sendPushNotifcation(ids, metaInfo) {
             icon: "ic_launcher",
             badge: "1",
             click_action: 'FCM_PLUGIN_ACTIVITY',
-            image: 'https://res.cloudinary.com/maharaja-banquet/image/upload/v1661863652/Maharaja-Banquet_SOCIAL-MEDIA_fnigtt.jpg'
+            image: metaInfo.img
         },
         priority: 'high',
         data: {
