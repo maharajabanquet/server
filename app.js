@@ -75,7 +75,7 @@ app.use('/api/v1/cashinflow', cashInflowRoutes)
 app.use('/api/v1/receiving', Receiving)
 app.use('/api/v1/receiving/generate', receivingPdfRoutes)
 app.use('/api/v1/inventory', Inventory)
-app.use('/api/v1/service', Service)
+app.use('//api/v1/service', Service)
 app.use('//api/v1/app-user', AppUser)
 
 
