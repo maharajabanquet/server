@@ -76,6 +76,22 @@ router.post('/send_notification', (req, res) => {
 })
 
 
+router.get('/get-user', (req, res) => {
+    AppUser.find({}, function(err, result) {
+            res.status(200).json(result)
+    } )
+
+})
+router.get('/remove-user', (req, res) => {
+    const mobile = req && req.query && req.query.mobile;
+    const query = {mobile: mobile}
+
+    AppUser.findOneAndDelete(query, function(err, result) {
+            res.status(200).json({'status': 'Deleted'})
+            console.log(err);
+    } )
+
+})
     
 function sendPushNotifcation(ids, metaInfo) {
     let token_list = []
