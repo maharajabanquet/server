@@ -13,7 +13,7 @@ router.post('/login', (req, res) => {
     console.log(password);
 
     AppUser.findOne({mobile: mobile, password: password}, function(err, result) {
-        console.log(result);
+        console.log(err);
         if(!result) {
             res.status(404).json({'user': 'not found'});
             return;

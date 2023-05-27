@@ -24,6 +24,12 @@ const AppUserSchema = mongoose.Schema({
     },
     cart: {
         type: Array
+    },
+    notification: {
+        type: String
+    },
+    isAdmin: {
+        type: Boolean
     }
 
 })

@@ -144,6 +144,17 @@ router.post('/settle-booking',(req,res) => {
     })
 })
 
+router.get('/get-user-booking', (req, res) => {
+    const mobileNumber = req && req.query && req.query.mobile;
+    Booking.findOne({phoneNumber: mobileNumber}, function(err, result) {
+        if(err) {
+            res.status(404).json({status: 'No Booking Found'});
+            return;
+        } 
+        res.status(200).json({data: result})
+    })
+})
+
 router.post('/add-expense',(req,res) => {
     const _id = new ObjectId(req.body._id);
     Booking.findById({_id: _id}, function(err, data) {
