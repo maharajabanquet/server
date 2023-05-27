@@ -6,7 +6,8 @@ require('dotenv/config')
 
 
   const transporter = nodemailer.createTransport({    
-    host: "smtpout.secureserver.net",  
+    host: "smtp.gmail.com",  
+    service: 'gmail',
     secure: true,
     secureConnection: false, // TLS requires secureConnection to be false
     tls: {
@@ -16,6 +17,7 @@ require('dotenv/config')
     port: 465,
     debug: true,
     auth: {
+        type: "login", // default
         user: process.env.GODADDYEMAIL,
         pass: process.env.GODADDYPASSWORD
     }
