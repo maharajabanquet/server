@@ -11,6 +11,13 @@ const TokenSchema = mongoose.Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    phoneNumber: {
+        type: String
     }
    
 })

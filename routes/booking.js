@@ -30,8 +30,9 @@ router.post('/add-booking', (req, res) => {
         Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
             token.find({}, function(err, success) {
                 if(success && success.length > 0) {
-                    schedule(req.body['cancel_date'])
-                    sendPushNotifcation(success, req.body)
+                    if(success && success.isAdmin) {
+                        sendPushNotifcation(success, req.body)
+                    }
                 } 
             } )
             res.status(200).json({'success': data});

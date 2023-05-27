@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.post('/add_tokens', (req, res) => {
     const fcm_token = req && req.body && req.body.fcm_token;
-    const addToken = new Token({'fcm_token': fcm_token, 'admin': false})
-    addToken.save({'fcm_token': fcm_token, 'admin': false, phoneNumber: req.body.phoneNumber}).then(result => {
+    const addToken = new Token({'fcm_token': fcm_token,phoneNumber: req.body.phoneNumber ,isAdmin: req.body.isAdmin})
+    addToken.save({'fcm_token': fcm_token, 'admin': false, phoneNumber: req.body.phoneNumber, isAdmin: req.body.isAdmin}).then(result => {
         if(!result)   {
             res.status(200).json({status: false});
             return;
