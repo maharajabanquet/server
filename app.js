@@ -64,7 +64,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/invoice', pdfkitRoutes);
 app.use('/api/v1/traffic', trafficRoutes);
 app.use('/api/v1/lagan', LaganRoutes);
-app.use('//api/v1/token', tokenRoutes);
+app.use('/api/v1/token', tokenRoutes);
 // app.use('/api/v1/whatsapp', whatsappRoutes);
 app.use('/api/v1/coms', CommRoutes);
 app.use('/api/v1/task', TaskRoutes);
