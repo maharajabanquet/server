@@ -27,10 +27,13 @@ router.post('/add-booking', (req, res) => {
     // console.log(req.body['bookingDate']);
     // res.status(200).json({'success': true});
     add_booking.save(req.body).then(data => {
-        Config.updateOne({$set: {finalBookingAmount: 125000}}, function(err, success) {
+        Config.updateOne({$set: {finalBookingAmount: 151000}}, function(err, success) {
             token.find({}, function(err, success) {
+                console.log("result ", success);
                 if(success && success.length > 0) {
                     if(success && success.isAdmin) {
+                        console.log("IS ADMIN ", success.isAdmin);
+                    
                         sendPushNotifcation(success, req.body)
                     }
                 } 
