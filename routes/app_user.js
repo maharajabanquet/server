@@ -66,7 +66,8 @@ router.post('/update', (req, res) => {
 })
 
 router.post('/send_notification', (req, res) => {
-    token.find({}, function(err, success) {
+    console.log("MOBILE FOUND ", req.query);
+    token.find({phoneNumber: req.query.mobile}, function(err, success) {
         if(success && success.length > 0) {
             sendPushNotifcation(success, req.body)
         } 
