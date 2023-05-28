@@ -31,11 +31,13 @@ router.post('/add-booking', (req, res) => {
             token.find({}, function(err, success) {
                 console.log("result ", success);
                 if(success && success.length > 0) {
-                    if(success && success.isAdmin) {
-                        console.log("IS ADMIN ", success.isAdmin);
-                    
-                        sendPushNotifcation(success, req.body)
+                    for(let index=0; index<success.length; index++) {
+                        if(success[index] && success[index].isAdmin) {
+                            console.log("IS ADMIN ", success.isAdmin);
+                            sendPushNotifcation(success, req.body)
+                        }
                     }
+                  
                 } 
             } )
             res.status(200).json({'success': data});
