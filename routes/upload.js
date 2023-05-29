@@ -44,19 +44,6 @@ router.post('/upload-expense-excel', (req, res) => {
         }
         res.json({ status: 'success', msg: 'file uploaded', url: result && result.url })
       });
-
-    // cloudinary.v2.uploader.upload(`./upload/${req.body.fileName}`,  { resource_type: "raw" },  { public_id: `expense_sheet/${req.body.fileName}` },
-    //   function (error, result) {
-    //     if(error) {
-    //       console.log(error);
-    //     res.status(error.http_code).json({ status: 'error', msg: error})
-    //     return;
-    //     }
-    //     res.json({ status: 'success', msg: 'file uploaded', url: result && result.url })
-    //     // fs.unlink(`./upload/${req.body.fileName}`, function (err) {
-    //     //   console.log(logSymbols.error, `${filePath} hasbeen removed`);
-    //     // })
-    //   })
   } catch (err) {
     console.log(err);
   }

@@ -1,0 +1,84 @@
+[
+    {
+    
+        "itemName": "Gas Stove",
+        "quantity": 4,
+        "image": ""
+    },
+    {
+        "itemName": "Deg Bartan",
+        "quantity": 16,
+        "image": ""
+    },
+    {
+        "itemName": "Naad",
+        "quantity": 12,
+        "image": ""
+    },
+    {
+        "itemName": "Steel Tray",
+        "quantity": 4,
+        "image": ""
+    },
+    {
+        "itemName": "Iron Tray",
+        "quantity": 4,
+        "image": ""
+    },
+    {
+        "itemName": "Dinner Set",
+        "quantity": 9,
+        "image": ""
+    },
+    {
+        "itemName": "Steel Balti",
+        "quantity": 4,
+        "image": ""
+    },
+    {
+        "itemName": "Kadhai",
+        "quantity": 3,
+        "image": ""
+    },
+    {
+        "itemName": "Panja",
+        "quantity": 3,
+        "image": "" 
+    },
+    {
+        "itemName": "Kalchul",
+        "quantity": 5,
+        "image": ""
+    },
+    {
+        "itemName": "Buffet Table (Decorated)",
+        "quantity": 10,
+        "image": ""
+    },
+    {
+        "itemName": "Sofa Three Seater",
+        "quantity": 8,
+        "image": ""
+    },
+    {
+        "itemName": "Steel Chair",
+        "quantity": 200,
+        "image": ""
+    },
+    {
+        "itemName": "Plastic Chair",
+        "quantity": 100,
+        "image": ""
+    },
+    
+    {
+        "itemName": "Kitchen Chowki",
+        "quantity": 3,
+        "image": ""
+    },
+    {
+        "itemName": "Diesel (Unlimited)",
+        "quantity": 1
+    }
+
+]

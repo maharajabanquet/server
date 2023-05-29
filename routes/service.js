@@ -1,5 +1,6 @@
 const express = require('express');
 const Service = require('../models/ServiceModel');
+const serviceList = require('../models/serviceList');
 const router = express.Router();
 
 
@@ -18,5 +19,12 @@ router.get('/get-services', (req, res) => {
         res.status(200).json({'services': result});
        })
 })
+
+router.get('/service-list', (req, res) => {
+    serviceList.find({}, (err, result) => {
+        res.status(200).json(result);
+    })
+})
+
 
 module.exports = router
