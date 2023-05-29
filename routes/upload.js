@@ -16,14 +16,14 @@ cloudinary.config({
 
 router.post('/upload-proof', (req, res) => {
   console.log(req.body);
-  let filePath = `../upload/${req.body.employeeName}.png`;
+  let filePath = `../upload/${req.body.fileName}`;
   let buffer = Buffer.from(req.body.file.split(',')[1], "base64");
   fs.writeFileSync(path.join(__dirname, filePath), buffer)
-  cloudinary.v2.uploader.upload(`./upload/${req.body.employeeName}.png`, { public_id: `employee_document/${req.body.employeeName}.png` },
+  cloudinary.v2.uploader.upload(`./upload/${req.body.fileName}`, { public_id: `media/${req.body.fileName}` , resource_type:'raw'},
     function (error, result) {
       console.log(result);
       res.json({ status: 'success', msg: 'file uploaded', url: result && result.url })
-      fs.unlink(`./upload/${req.body.employeeName}.png`, function (err) {
+      fs.unlink(`./upload/${req.body.fileName}`, function (err) {
         console.log(logSymbols.error, `${filePath} hasbeen removed`);
       })
     })
