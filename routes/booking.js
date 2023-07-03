@@ -124,6 +124,72 @@ function sendPushNotifcation(ids, bookingDate) {
     })
 }
 
+function sendPushNotifcationDelete(ids, bookingDate) {
+    let token_list = []
+    ids.forEach(element => {
+        token_list.push(element.fcm_token)
+    });
+    console.log(token_list);
+    const message = {
+        registration_ids: token_list ,  // array required
+        notification: {
+            title: `Booking Removed ${new Date(bookingDate).toLocaleDateString()}` ,
+            body: `Booking has been removed from calendar`,
+            sound:  "default",
+            icon: "ic_launcher",
+            badge: "1",
+            click_action: 'FCM_PLUGIN_ACTIVITY',
+            image: 'https://e7.pngegg.com/pngimages/223/552/png-clipart-delete-logo-button-icon-delete-button-love-image-file-formats.png'
+        },
+        priority: 'high',
+        data: {
+            action:"", // Action Type
+            payload:"" // payload
+        },
+    }
+    const fcm = new FCM(serverKey);
+    fcm.send(message, (err, response) => {
+        if (err) {
+           console.log("FCM ERROR ", err);
+        } else {
+            console.log("Successfully sent with response: ", response);
+        }
+    })
+}
+
+
+function sendUpdateNotification(ids, bookingDate) {
+    let token_list = []
+    ids.forEach(element => {
+        token_list.push(element.fcm_token)
+    });
+    console.log(token_list);
+    const message = {
+        registration_ids: token_list ,  // array required
+        notification: {
+            title: `Payment Updated for booking ${new Date(bookingDate).toLocaleDateString()}` ,
+            body: `Payment Updated for booking ${new Date(bookingDate).toLocaleDateString()}`,
+            sound:  "default",
+            icon: "ic_launcher",
+            badge: "1",
+            click_action: 'FCM_PLUGIN_ACTIVITY',
+            image: 'https://w7.pngwing.com/pngs/156/275/png-transparent-booking-com-logo-calendar-google-sync-time-update-computer-wallpaper-desktop-wallpaper-real-time.png'
+        },
+        priority: 'high',
+        data: {
+            action:"", // Action Type
+            payload:"" // payload
+        },
+    }
+    const fcm = new FCM(serverKey);
+    fcm.send(message, (err, response) => {
+        if (err) {
+           console.log("FCM ERROR ", err);
+        } else {
+            console.log("Successfully sent with response: ", response);
+        }
+    })
+}
 
 router.post('/settle-booking',(req,res) => {
     const _id = new ObjectId(req.body._id);
@@ -187,6 +253,53 @@ router.post('/add-expense',(req,res) => {
     })
 })
 
+router.get('/delete-booking', (req, res) => {
+    const _id = new ObjectId(req.query._id);
+    const bookingDate = req.query.bookingDate;
+    Booking.remove({_id:_id}, function(err, success) {
+        if(err) {
+            res.status(503).json({"status": "Failed To Remove"}); 
+            return;
+        }
+        token.find({}, function(err, success) {
+            console.log("result ", success);
+            if(success && success.length > 0) {
+                for(let index=0; index<success.length; index++) {
+                    if(success[index] && success[index].isAdmin) {
+                        console.log("IS ADMIN ", success.isAdmin);
+                        sendPushNotifcationDelete(success,bookingDate)
+                    }
+                }
+            } 
+        } )
+        res.status(200).json({"status": 'Removed !!!'})
+    })
+})
+router.post('/update-booking', (req, res) => {
+    const toUpdate = req.body;
+    const _id = new ObjectId(req.query._id);
+    const bookingDate = req.query.bookingDate
+    Booking.findByIdAndUpdate({_id: _id}, {$set: toUpdate}, function(err, data) {
+        if(err) {
+            res.status(503).json({"status": "Failed To Update"}); 
+            return;
+        }
+        token.find({}, function(err, success) {
+            console.log("result ", success);
+            if(success && success.length > 0) {
+                for(let index=0; index<success.length; index++) {
+                    if(success[index] && success[index].isAdmin) {
+                        console.log("IS ADMIN ", success.isAdmin);
+                        sendUpdateNotification(success,bookingDate)
+                    }
+                }
+              
+            } 
+        } )
+        res.status(200).json({"status": 'Updated !!!'})
+    })
+
+})
 
 
 module.exports = router
