@@ -36,7 +36,7 @@ router.post('/add-booking', (req, res) => {
                     for(let index=0; index<success.length; index++) {
                         if(success[index] && success[index].isAdmin) {
                             console.log("IS ADMIN ", success.isAdmin);
-                            // sendPushNotifcation(success, req.body)
+                            sendPushNotifcation(success, req.body)
                         }
                         
                     }
