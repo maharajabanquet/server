@@ -119,7 +119,7 @@ function sendPushNotifcation(ids, bookingDate) {
         },
         priority: 'high',
         data: {
-            action:"", // Action Type
+            action:"admin", // Action Type
             payload:"" // payload
         },
     }
@@ -148,7 +148,7 @@ function sendNotifcationToDj(token, bookingDate, djName) {
         },
         priority: 'high',
         data: {
-            action:"", // Action Type
+            action:"dj", // Action Type
             payload:"" // payload
         },
     }
