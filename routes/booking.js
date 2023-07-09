@@ -31,12 +31,12 @@ router.post('/add-booking', (req, res) => {
     add_booking.save(req.body).then(data => {
         Config.updateOne({$set: {finalBookingAmount: 151000}}, function(err, success) {
             token.find({}, function(err, success) {
-                console.log("result ", success);
                 if(success && success.length > 0) {
                     for(let index=0; index<success.length; index++) {
                         if(success[index] && success[index].isAdmin) {
-                            console.log("IS ADMIN ", success.isAdmin);
-                            sendPushNotifcation(success, req.body)
+                            console.log("IS ADMIN ", success[index].isAdmin);
+                            console.log("IS ADMIN ", success[index].phoneNumber);
+                            sendPushNotifcation(success[index].fcm_token, req.body)
                         }
                         
                     }
@@ -105,12 +105,9 @@ router.get('/confirm-booking', (req, res) => {
 
 function sendPushNotifcation(ids, bookingDate) {
     let token_list = []
-    ids.forEach(element => {
-        token_list.push(element.fcm_token)
-    });
     console.log(token_list);
     const message = {
-        registration_ids: token_list ,  // array required
+        registration_ids: [ids] ,  // array required
         notification: {
             title: `Booking for ${new Date(bookingDate.bookingDate).toLocaleDateString()}` ,
             body: `please tap to confirm`,
