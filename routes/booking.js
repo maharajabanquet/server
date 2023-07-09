@@ -9,6 +9,7 @@ const { ObjectId } = require('mongodb');
 const router = express.Router();
 var moment = require('moment'); // require
 const schedule = require('../helpers/schedule');
+const AppUser = require('../models/AppUser')
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 
 router.post('/add-booking', (req, res) => {
@@ -17,6 +18,7 @@ router.post('/add-booking', (req, res) => {
     reminderDate = reminderDate.subtract(14, "days");
     reminderDate = reminderDate.format();
     req.body['reminder_date'] = reminderDate;
+    const assigedDj = req && req.body && req.body.assignedDj || ''
     // add cancel date
     var cancelDate = moment(new Date(req.body.bookingDate));
     cancelDate = cancelDate.subtract(10, "days");
@@ -34,12 +36,22 @@ router.post('/add-booking', (req, res) => {
                     for(let index=0; index<success.length; index++) {
                         if(success[index] && success[index].isAdmin) {
                             console.log("IS ADMIN ", success.isAdmin);
-                            sendPushNotifcation(success, req.body)
+                            // sendPushNotifcation(success, req.body)
                         }
+                        
                     }
                   
                 } 
             } )
+            if(assigedDj) {
+                AppUser.findOne({mobile:assigedDj}, function(err, result) {
+                    if(result) {
+                        const fcm_token = result && result.fcm_token;
+                        const djName = result && result.userName;
+                        sendNotifcationToDj(fcm_token, req.body.bookingDate, djName)
+                    }
+                })
+            }
             res.status(200).json({'success': data});
         })
     }).catch(err => {
@@ -107,6 +119,35 @@ function sendPushNotifcation(ids, bookingDate) {
             badge: "1",
             click_action: 'FCM_PLUGIN_ACTIVITY',
             image: 'https://res.cloudinary.com/maharaja-banquet/image/upload/v1661863652/Maharaja-Banquet_SOCIAL-MEDIA_fnigtt.jpg'
+        },
+        priority: 'high',
+        data: {
+            action:"", // Action Type
+            payload:"" // payload
+        },
+    }
+    const fcm = new FCM(serverKey);
+    fcm.send(message, (err, response) => {
+        if (err) {
+           console.log("FCM ERROR ", err);
+        } else {
+            console.log("Successfully sent with response: ", response);
+        }
+    })
+}
+
+function sendNotifcationToDj(token, bookingDate, djName) {
+   
+    const message = {
+        registration_ids: [token] ,  // array required
+        notification: {
+            title: `Hello ${djName}, Your Order Recieved for ${new Date(bookingDate).toLocaleDateString()}, Please accept.` ,
+            body: `Tap To View Orders`,
+            sound:  "default",
+            icon: "ic_launcher",
+            badge: "1",
+            click_action: 'FCM_PLUGIN_ACTIVITY',
+            image: 'http://www.maharajaraxaul.com/assets/images/main.jpeg'
         },
         priority: 'high',
         data: {
