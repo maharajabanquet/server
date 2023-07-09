@@ -71,6 +71,15 @@ const BookingSchema = mongoose.Schema({
     },
     expense_sheet: {
         type: String
+    },
+    DJ: {
+        type: Boolean
+    },  
+    assignedDj: {
+        type: String
+    },
+    djType: {
+        type: String
     }
 })
 

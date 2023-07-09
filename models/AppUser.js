@@ -30,6 +30,15 @@ const AppUserSchema = mongoose.Schema({
     },
     isAdmin: {
         type: Boolean
+    },
+    isDj: {
+        type: Boolean
+    },
+    djOrder: {
+        type: Array
+    },
+    fcm_token: {
+        type: String
     }
 
 })

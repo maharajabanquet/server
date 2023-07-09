@@ -22,6 +22,17 @@ router.post('/login', (req, res) => {
     })
 })
 
+router.get('/get-user-details', (req, res) => {
+    const mobile = req && req.query && req.query.mobile;
+    AppUser.findOne({mobile: mobile}, function(err, result) {
+        if(err) {
+            res.status(404).json({'user': 'not found'});
+            return;
+        } 
+        res.status(200).json({'user': result});
+    })
+})
+
 router.get('/get-cart', (req, res) => {
     const mobile= req.query.mobile;
     const category = req.query.category;
@@ -83,6 +94,17 @@ router.get('/get-user', (req, res) => {
     } )
 
 })
+
+router.get('/get-dj-user', (req, res) => {
+    AppUser.find({isDj: true}, function(err, result) {
+        if(err) {
+            res.status(404).json({result: 'Not Found'});
+            return;
+        }
+        res.status(200).json({result: result});
+    })
+})
+
 router.get('/remove-user', (req, res) => {
     const mobile = req && req.query && req.query.mobile;
     const query = {mobile: mobile}
@@ -94,6 +116,20 @@ router.get('/remove-user', (req, res) => {
 
 })
     
+router.post('/assign-dj', (req, res) => {
+    const mobile = req && req.query && req.query.mobile;
+    AppUser.findOne({mobile: mobile}, function(err, result) {
+        let djOrder = result && result.djOrder;
+        djOrder.push(req.body);
+        AppUser.findOneAndUpdate({mobile: mobile}, {$set: {djOrder: djOrder}}, function(err, success) {
+            if(err) {
+                res.status(200).json({'status': 'Unable to assign DJ, please check server logs'});
+                return;
+            }
+            res.status(200).json({'status': 'Dj Assigned'});
+        })
+    })
+})
 function sendPushNotifcation(ids, metaInfo) {
     let token_list = []
     ids.forEach(element => {
@@ -126,5 +162,17 @@ function sendPushNotifcation(ids, metaInfo) {
         }
     })
 }
+
+router.post('/update-dj-orders', (req, res) => {
+    const mobile = req && req.query && req.query.mobile;
+    const toPut = req && req.body;
+        AppUser.findOneAndUpdate({mobile: mobile}, {$set:{djOrder: toPut}}, function(err, success) {
+            if(err) {
+                res.status(500).json({status: 'Something went wrong'});
+                return;
+            } 
+            res.status(200).json({'status': 'success'});
+        })
+})
 
 module.exports = router;
