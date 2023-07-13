@@ -5,7 +5,7 @@ const router = express.Router();
 require('dotenv/config')
 
 
-  const transporter = nodemailer.createTransport({    
+const transporter = nodemailer.createTransport({    
     host: "smtp.gmail.com",  
     service: 'gmail',
     secure: true,
