@@ -2,6 +2,7 @@ const express = require('express');
 const Token = require('../models/Tokens');
 const router = express.Router();
 const AppUser = require('../models/AppUser')
+const NewsNotify = require('../models/NewsNotify');
 
 router.post('/add_tokens', (req, res) => {
     const fcm_token = req && req.body && req.body.fcm_token;
@@ -16,6 +17,22 @@ router.post('/add_tokens', (req, res) => {
         } 
         res.status(200).json({status: true, docs: result})
     })
+})
+
+router.post('/add-news-token', (req, res) => {
+    const fcm_token = req && req.body && req.body.fcm_token;
+    const addToken = new NewsNotify({'fcm_token': fcm_token});
+    NewsNotify.findOne({'fcm_token': fcm_token}, function(err, result)  {
+        if(result) {
+            console.log(result);
+            res.status(200).json({status: 'Already register'});
+            return
+        } 
+        addToken.save({'fcm_token': fcm_token}).then(result => {
+            res.status(200).json({status: true, docs: result})
+        })
+    })
+    
 })
 
 router.get('/get-token', (req, res) => {

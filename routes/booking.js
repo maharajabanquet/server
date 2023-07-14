@@ -12,6 +12,7 @@ const schedule = require('../helpers/schedule');
 const AppUser = require('../models/AppUser')
 const serverKey = "AAAA3TusO0M:APA91bFx9h7VwDVnRJiqmEVYLinnpVbkvQxCV-EgSyyugYnQtW9Mq1j_Z7GgtKiZWmu7_mcTcclTIZ2H4NvXqUI06wsJcJSCGa7OEaoYk4Ia5j1c9-rlkBUBrn7MgEyctNhiRtRotu_I"//put your server key here
 
+
 router.post('/add-booking', (req, res) => {
     
     var reminderDate = moment(new Date(req.body.bookingDate));
@@ -338,6 +339,5 @@ router.post('/update-booking', (req, res) => {
     })
 
 })
-
 
 module.exports = router

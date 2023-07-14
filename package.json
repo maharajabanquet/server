@@ -31,7 +31,8 @@
     "node-schedule": "^2.1.0",
     "nodemailer": "^6.7.6",
     "nodemon": "^2.0.19",
-    "pdfkit": "^0.13.0"
+    "pdfkit": "^0.13.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "@types/express-handlebars": "^6.0.0",

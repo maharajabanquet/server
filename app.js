@@ -49,6 +49,7 @@ const Service = require('./routes/service');
 const AppUser = require('./routes/app_user');
 const Media = require('./routes/mediaSource');
 const PublicBooking = require('./routes/publicBooking');
+const News = require('./routes/news');
 
 
 
@@ -85,6 +86,8 @@ app.use('/api/v1/service', Service)
 app.use('/api/v1/app-user', AppUser)
 app.use('/api/v1/media', Media)
 app.use('/api/v1/public-booking', PublicBooking)
+app.use('/api/v1/news', News)
+
 
 
 
