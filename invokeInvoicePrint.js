@@ -81,7 +81,7 @@ function generateInvoiceNumber(count) {
 }
 
 router.get('/preview-pdf', (req, res) => {
-  res.status(200).send(pdfUrl)
+  res.status(200).json({url: pdfUrl})
 })
 
 function convertBookingDate(date) {
