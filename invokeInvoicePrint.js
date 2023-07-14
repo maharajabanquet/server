@@ -61,7 +61,7 @@ router.post('/generate_invoice',async (req, res) => {
       })
 
         setTimeout( () => {
-            cloudinary.v2.uploader.upload("estimate.pdf", {public_id: req.body.phoneNumber}, 
+            cloudinary.v2.uploader.upload("estimate.pdf", {public_id: `${req.body.firstName}_invoice`}, 
             function(error, result) {
               pdfUrl = result && result.url;
                 const file = fs.readFileSync('estimate.pdf', 'binary')
