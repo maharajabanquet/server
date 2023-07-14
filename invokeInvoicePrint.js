@@ -7,6 +7,8 @@ const crypt = require('crypto');
 const cloudinary = require('cloudinary')
 const bookingSchema = require('./models/Booking');
 const counterSchema = require('./models/Counter');
+
+var pdfUrl = ''
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY, 
@@ -61,7 +63,7 @@ router.post('/generate_invoice',async (req, res) => {
         setTimeout( () => {
             cloudinary.v2.uploader.upload("estimate.pdf", {public_id: req.body.phoneNumber}, 
             function(error, result) {
-              console.log(result);
+              pdfUrl = result && result.url;
                 const file = fs.readFileSync('estimate.pdf', 'binary')
                 res.setHeader('Content-Type', 'application/pdf');
                 res.setHeader('Content-Disposition', 'attachment; filename=estimate.pdf');
@@ -77,6 +79,10 @@ function generateInvoiceNumber(count) {
    })
    return `${count}_MB_${new Date().getUTCFullYear()}`
 }
+
+router.get('/preview-pdf', (req, res) => {
+  res.status(200).send(pdfUrl)
+})
 
 function convertBookingDate(date) {
     var initial = date.split(/\//);
