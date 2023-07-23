@@ -100,8 +100,6 @@ router.post('/contact-us', (req, res) => {
 
 router.post('/validate-visitor-code', (req, res) => {
     Config.findOne({}, function(err, result) {
-        console.log(typeof(result.visitorCode));
-        console.log(typeof( req.body.visitorCode));
 
         if(result && result.visitorCode === req.body.visitorCode) {
             res.status(200).json({status: 'Visitor Code Verified'})
