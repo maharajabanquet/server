@@ -1,6 +1,7 @@
 const express = require('express');
 const Enquiry = require('../models/Enquiry');
 const nodemailer = require('nodemailer');
+const Config = require('../models/Config')
 const router = express.Router();
 require('dotenv/config')
 
@@ -33,7 +34,10 @@ router.post('/add-enquiry', (req, res) => {
        "BookingDate": req.body.BookingDate
     });
    add_enquiry.save().then(data => {
-       res.status(200).json({'success': data});
+    Config.findOne({}, function(err, result) {
+        res.status(200).json({'visitorCode': result.visitorCode});
+    })
+     
    })
    .catch(err => {
        res.status(503).json({'error': 'Internal Server Error'})
@@ -93,5 +97,21 @@ router.post('/contact-us', (req, res) => {
       });
 })
 
+
+router.post('/validate-visitor-code', (req, res) => {
+    Config.findOne({}, function(err, result) {
+        console.log(typeof(result.visitorCode));
+        console.log(typeof( req.body.visitorCode));
+
+        if(result && result.visitorCode === req.body.visitorCode) {
+            res.status(200).json({status: 'Visitor Code Verified'})
+            return;
+        } else {
+            res.status(403).json({staus: 'Invalid Visitor Code'})
+            return;
+
+        }
+    })
+})
 
 module.exports = router;

@@ -28,6 +28,9 @@ const ConfigSchema = mongoose.Schema({
     },
     securityDepositCharges: {
         type: Number,
+    },
+    visitorCode: {
+        type: Number
     }
 })
 
