@@ -24,7 +24,7 @@ function createInvoice(invoice, path) {
   generateFooters(doc, invoice)
   generateInvoiceTable(doc, invoice);
   generateFooter(doc, invoice);
-  metaInfo(doc)
+  // metaInfo(doc)
   
 
  doc.pipe(fs.createWriteStream(path));
@@ -100,7 +100,7 @@ function generateInvoiceTable(doc, invoice) {
     doc,
     invoiceTableTop,
     "Facility",
-    "",
+    "Extra Service",
     "Cost",
     "Days",
     "Line Total"
@@ -116,7 +116,7 @@ function generateInvoiceTable(doc, invoice) {
       doc,
       position,
       item.item,
-      "",
+      addOn(invoice),
       formatCurrency(removeComma(item.amount) / removeComma(item.quantity)),
       item.quantity,
       formatCurrency(removeComma(item.amount))
@@ -126,6 +126,19 @@ function generateInvoiceTable(doc, invoice) {
     
   }
 
+  function addOn(item) {
+    console.log(item);
+    if(item && item.dgWithDiesel && item.dj) {
+      return '(Diesel and DJ Sound Included)'
+    } else if(item && item.dgWithDiesel) {
+      return '(Diesel Included)'
+    } else if(item && item.dj) {
+      return '(DJ Sound Included)'
+    }
+     else {
+      return '(Diesel Not Included)'
+    }
+  }
   const subtotalPosition = invoiceTableTop + (i + 1) * 30;
   generateTableRow(
     doc,
@@ -203,26 +216,8 @@ function metaInfo(doc) {
 function generateFooters(doc, invoice) {
     
   doc
-  .fontSize(10)
-  .text(
-  ` Facilities We Provide:\n 
-    - Sofa - Large (3 Seater)
-    - Chair with cover
-    - AC Mini Hall - 01
-    - AC Mandap Hall - 01
-    - Kitchen
-    - Lighting  
-    - Open Lawn
-    - VIP Room With Attached Bathroom (AC) - 06
-    - Jaimala Stage With Fixed Decoration - 01
-    - Delux Room For Bride and Groom With Attached Bathroom (AC)-02
-    - Buffet Table
-    - Buffet Bartan ( 9 Handi Set, 9 Gamla, 10 Serving Spoon, 5 Tray, 5 Dekchi)
-    `,
-    50,
-    550,
-    { align: "left", width: 500 }
-  );
+  .image("terms.png", 30, 500, { width: 550})
+
 }
   
 

@@ -51,7 +51,8 @@ router.post('/generate_invoice',async (req, res) => {
         invoice_nr: generateInvoiceNumber(counter),
         bookingDate: convertBookingDate(req.body.bookingDate),
         dgWithDiesel: req.body.dgWithDiesel,
-        bookingType: req.body.requirements
+        bookingType: req.body.requirements,
+        dj: req.body.DJ
       };
       
       createInvoice(invoice, "estimate.pdf", res)
