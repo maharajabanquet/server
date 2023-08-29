@@ -183,7 +183,6 @@ app.post("/api/v1/user/login", async (req, res) => {
 app.use(express.static(process.cwd()+"/dist/maharaja/"));
 app.get('/booking', (req,res) => {
   if(req && req.query === 'app') {
-
   }
     res.sendFile(process.cwd()+"/dist/maharaja/index.html")
   });
