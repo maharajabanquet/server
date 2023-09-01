@@ -27,7 +27,7 @@ function createInvoice(invoice, path) {
   // metaInfo(doc)
   
 
- doc.pipe(fs.createWriteStream(path));
+//  doc.pipe(fs.createWriteStream(path));
  doc.end();
 }
 
