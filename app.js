@@ -51,6 +51,8 @@ const Media = require('./routes/mediaSource');
 const PublicBooking = require('./routes/publicBooking');
 const News = require('./routes/news');
 const Debt = require('./routes/debt');
+const Attendance = require('./routes/attendance');
+
 
 
 
@@ -87,6 +89,8 @@ app.use('/api/v1/media', Media)
 app.use('/api/v1/public-booking', PublicBooking)
 app.use('/api/v1/news', News)
 app.use('/api/v1/debt', Debt)
+app.use('/api/v1/attendance', Attendance)
+
 
 
 
