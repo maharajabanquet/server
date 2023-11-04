@@ -21,8 +21,8 @@ function createInvoice(invoice, path) {
   let doc = new PDFDocument({ size: "A4", margin: 50 });
   generateHeader(doc);
   generateCustomerInformation(doc, invoice);
-  generateFooters(doc, invoice)
   generateInvoiceTable(doc, invoice);
+  genenrateSignature(doc)
   generateFooter(doc, invoice);
   // metaInfo(doc)
   
@@ -38,6 +38,7 @@ function generateHeader(doc) {
     .fontSize(20)
     // .text("Maharaja Banquet", 110, 57)
     .fontSize(10)
+    .fillColor('#6F5D3D')
     .text("Pankaj Chowk,", 200, 50, { align: "right" })
     .text("Near Mawesi Hospital", 200, 65, { align: "right" })
     .text("P.O: Raxaul, Bihar, 845305", 200, 80, { align: "right" })
@@ -47,7 +48,7 @@ function generateHeader(doc) {
 
 function generateCustomerInformation(doc, invoice) {
   doc
-    .fillColor("#444444")
+    .fillColor("#6F5D3D")
     .fontSize(20)
     .text("Estimate", 50, 160);
 
@@ -178,48 +179,30 @@ function generateInvoiceTable(doc, invoice) {
 }
 
 
-
+function genenrateSignature(doc) {
+  doc
+  .fontSize(10)
+  .fillColor('black')
+  .text(
+    `Customer Signature`,
+    50,
+    555,
+    { align: "left", width: 500, underline:true,}
+  )
+}
 function generateFooter(doc, invoice) {
   doc
     .fontSize(10)
+    .fillColor('red')
     .text(
       `* Please clear balance amount 2 Week before ${invoice.bookingDate} else booking will be cancelled *`,
       50,
       780,
-      { align: "center", width: 500, color: 'red' }
-    );
+      { align: "center", width: 500}
+    )
 }
 
 
-function metaInfo(doc) {
-  doc
-  .font('./Kalam-Regular.ttf')
-    .fillColor("#444444")
-    .fontSize(16)
-    .text("TERMS AND CONDITIONS:-", 50, 800)
-    .fontSize(16)
-    .text("(1) तिथि से एक सप्ताह पहले पूरा भुगतान करें ।", 50, 80)
-    .fontSize(16)
-    .text(`(2) मानक ध्वनि पर साउंड बॉक्स के द्वारा रात्रि 10 बजे तक संगीत बजाने की अनुमति है । उलंधन करने पर इसके लिए पार्टी स्वयं जिम्मेवार होंगे। ।`, 50, 120)
-    .fontSize(16)
-    .text("(3) समान लेने तथा देने समय समान को मिला लें ।", 50, 180)
-    .fontSize(16)
-    .text("(4) शादी या उत्सव में महाराजा वेंकट हॉल का  वर्तन  प्राप्त करने से पहले सरक्यूरिटी मनी जमा करना होगा तथा वर्तन का सफाई खर्च पार्टी को देय होगा अन्यथा वर्तन नही मिलेगा ।  काम खत्म होने के बाद वर्तन वापस करने के बाद सफाई खर्च ₹1000/- काटने के बाद सिक्युरिटी मनी वापस हो जाएगा ।", 50, 210)
-    .fontSize(16)
-    .text(`(5) मानक ध्वनि पर साउंड बॉक्स के द्वारा रात्रि 10 बजे तक संगीत बजाने की अनुमति है । उलंधन करने पर इसके लिए पार्टी स्वयं जिम्मेवार होंगे। ।`, 50, 320)
-    .fontSize(16)
-    .text(`(6) किसी भी अनजान या अवांक्षित मेहमान या ब्यक्ति दिखाई दे तो तुरंत आप प्रबंधक , महाराजा बैंकेट हॉल को सूचित करें ।`, 50, 380)
-    generateHr(doc, 190, false);
-
-}
-
-function generateFooters(doc, invoice) {
-    
-  doc
-  .image("terms.png", 30, 500, { width: 550})
-
-}
-  
 
 
 function generateTableRow(
