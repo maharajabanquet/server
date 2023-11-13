@@ -27,4 +27,4 @@ const ReceivingSchema = mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model('receiving', ReceivingSchema)
+module.exports = mongoose.model('receiving-data', ReceivingSchema)
