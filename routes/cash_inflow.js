@@ -1,12 +1,19 @@
 const express = require('express');
 const CashInflow = require('../models/CashInflow');
-
+const ManagerCashInFlow =  require('../models/ManagerCashInFlow');
 const router = express.Router();
 
 
 router.post('/add-cash-inflow', (req, res) => {
     const body = req && req.body;
     const CashInflowIns = new CashInflow(body)
+    CashInflowIns.save(CashInflow);
+    res.status(200).json({'status': 'Added'});
+})
+
+router.post('/m-add-cash-inflow', (req, res) => {
+    const body = req && req.body;
+    const CashInflowIns = new ManagerCashInFlow(body)
     CashInflowIns.save(CashInflow);
     res.status(200).json({'status': 'Added'});
 })
@@ -33,9 +40,42 @@ router.get('/get-cash-inflow', (req, res) => {
     }
 })
 
+router.get('/m-get-cash-inflow', (req, res) => {
+    // CashInflow.find({}, function(err, result) {
+    //     res.status(200).json({data: result})
+    // })
+    const type = req && req.query && req.query.type;
+    let query = {}
+    const paginate = req && req.query && req.query.paginate;
+    if(type) {
+         query = {transactionType: type}
+    }
+    if(paginate) {
+        ManagerCashInFlow.find({}, function(err, result) {
+            res.status(200).json({'data': result});
+        })
+    } 
+    else {
+        ManagerCashInFlow.paginate({}, {page: Number(req.query.pageNo), limit: Number(req.query.pageSize)}, function(err, result){
+            res.status(200).json({'data': result});
+        })
+    }
+})
+
 router.get('/deletecashflow', (req, res) => {
     query = req && req.query;
-    CashInflow.findOneAndDelete(query, function(err, result) {
+    ManagerCashInFlow.findOneAndDelete(query, function(err, result) {
+        if(err) {
+            res.status(500).json({status: 'failure'});
+            return;
+        }
+        res.status(200).json({status: 'success'});
+    })
+})
+
+router.get('/m-deletecashflow', (req, res) => {
+    query = req && req.query;
+    ManagerCashInFlow.findOneAndDelete(query, function(err, result) {
         if(err) {
             res.status(500).json({status: 'failure'});
             return;

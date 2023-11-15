@@ -1,6 +1,6 @@
 const express = require('express');
 const Auth = require('../models/Auth');
-
+const otpAuth = require('../models/otplessAuth');
 const router = express.Router();
 
 
@@ -16,6 +16,12 @@ router.get('/security', (req, res) => {
 })
 
 
+router.post('/', (req, res) => {
+	const body = req && req.body;
+    const auth_user = new otpAuth(body)
+    auth_user.save(depart);
+    res.status(200).json({'status': 'Added'});
+})
  
 
 

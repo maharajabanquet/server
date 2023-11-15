@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
+const mongoosePaginate = require('mongoose-paginate');
 
 const CashInflowSchema = mongoose.Schema({
   partyName: String,
