@@ -16,10 +16,10 @@ router.get('/security', (req, res) => {
 })
 
 
-router.post('/', (req, res) => {
+router.post('/opt-auth', (req, res) => {
 	const body = req && req.body;
     const auth_user = new otpAuth(body)
-    auth_user.save(depart);
+    auth_user.save(auth_user);
     res.status(200).json({'status': 'Added'});
 })
  
