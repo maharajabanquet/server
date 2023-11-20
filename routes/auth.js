@@ -22,7 +22,12 @@ router.post('/opt-auth', (req, res) => {
     auth_user.save(auth_user);
     res.status(200).json({'status': 'Added'});
 })
- 
+
+router.get('/get-auth', (req, res) => {
+	otpAuth.find({}, function(err, result ) {
+		res.send(result)
+	})
+})
 
 
 
