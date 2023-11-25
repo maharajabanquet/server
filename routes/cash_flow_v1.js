@@ -12,7 +12,7 @@ router.post('/get-cash-flow', (req, res) => {
         let eDate = new Date(body.endDate);
         eDate.setDate(eDate.getDate() + 1);
         query['transactionDate'] =  {"$gte": sDate , "$lt": eDate}
-        query['type'] = body.type;
+        query['transactionType'] = body.type;
         query['is_booking'] = body.is_booking;
          if(body.singleDate) {
             let tDate = new Date(body.singleDate);
@@ -22,11 +22,12 @@ router.post('/get-cash-flow', (req, res) => {
          }
     }
     if(body.type == undefined) {
-        delete query['type'];
+        delete query['transactionType'];
     }
     if(body.is_booking == undefined) {
         delete query['is_booking'];
     }
+    console.log(query);
    
 
      console.log("---",query);
