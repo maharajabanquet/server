@@ -52,6 +52,8 @@ const PublicBooking = require('./routes/publicBooking');
 const News = require('./routes/news');
 const Debt = require('./routes/debt');
 const Attendance = require('./routes/attendance');
+const CashInFlowV1 = require('./routes/cash_flow_v1');
+
 
 
 
@@ -90,6 +92,9 @@ app.use('/api/v1/public-booking', PublicBooking)
 app.use('/api/v1/news', News)
 app.use('/api/v1/debt', Debt)
 app.use('/api/v1/attendance', Attendance)
+
+
+app.use('/api/v2/cash-in-flow', CashInFlowV1)
 
 
 
