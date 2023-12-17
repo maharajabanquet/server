@@ -25,19 +25,25 @@ router.post('/add-booking', (req, res) => {
     cancelDate = cancelDate.subtract(10, "days");
     cancelDate = cancelDate.format();
     req.body['cancel_date'] = cancelDate;
+
+
+    const paymentLabel = 'payment'
+    cp_payment_history= []
+    cp_payment = {}
+    cp_payment[paymentLabel] = req.body['BookingAmount']
+    cp_payment['date'] = new Date().toLocaleDateString('en-GB')
+    cp_payment_history.push(cp_payment)
+    req.body['payment_history'] = cp_payment_history;
+    const payload = req.body
     const add_booking = new Booking(req.body);
-    // schedule(req.body['cancel_date'])
-    // console.log(req.body['bookingDate']);
-    // res.status(200).json({'success': true});
-    add_booking.save(req.body).then(data => {
+    console.log(payload)
+    add_booking.save(payload).then(data => {
         Config.updateOne({$set: {finalBookingAmount: 151000}}, function(err, success) {
             token.find({}, function(err, success) {
                 if(success && success.length > 0) {
                     for(let index=0; index<success.length; index++) {
                         if(success[index] && success[index].isAdmin) {
-                            console.log("IS ADMIN ", success[index].isAdmin);
-                            console.log("IS ADMIN ", success[index].phoneNumber);
-                            sendPushNotifcation(success[index].fcm_token, req.body)
+                            // sendPushNotifcation(success[index].fcm_token, req.body)
                         }
                         
                     }
@@ -318,25 +324,38 @@ router.post('/update-booking', (req, res) => {
     const toUpdate = req.body;
     const _id = new ObjectId(req.query._id);
     const bookingDate = req.query.bookingDate
-    Booking.findByIdAndUpdate({_id: _id}, {$set: toUpdate}, function(err, data) {
-        if(err) {
-            res.status(503).json({"status": "Failed To Update"}); 
-            return;
-        }
-        token.find({}, function(err, success) {
-            console.log("result ", success);
-            if(success && success.length > 0) {
-                for(let index=0; index<success.length; index++) {
-                    if(success[index] && success[index].isAdmin) {
-                        console.log("IS ADMIN ", success.isAdmin);
-                        sendUpdateNotification(success,bookingDate)
+    console.log(toUpdate);
+    Booking.findOne({_id: _id}, function(err, result) {
+        let cp_payment_history = result && result.payment_history || [];
+        const hist_len = result && result.payment_history && result.payment_history.length || 0;
+        const labelPayment = `payment`
+        cp_payment = {}
+        cp_payment[labelPayment] = toUpdate['previous_advance']
+        cp_payment['date'] = new Date().toLocaleDateString('en-GB')
+        cp_payment_history.push(cp_payment)
+        toUpdate['payment_history'] = cp_payment_history
+        Booking.findByIdAndUpdate({_id: _id}, {$set: toUpdate}, function(err, data) {
+            console.log(toUpdate);
+            if(err) {
+                res.status(503).json({"status": "Failed To Update"}); 
+                return;
+            }
+            token.find({}, function(err, success) {
+                if(success && success.length > 0) {
+                    for(let index=0; index<success.length; index++) {
+                        if(success[index] && success[index].isAdmin) {
+                            console.log("IS ADMIN ", success.isAdmin);
+                            sendUpdateNotification(success,bookingDate)
+                        }
                     }
-                }
-              
-            } 
-        } )
-        res.status(200).json({"status": 'Updated !!!'})
+                  
+                } 
+            } )
+            res.status(200).json({"status": 'Updated !!!'})
+        })
     })
+  
+   
 
 })
 

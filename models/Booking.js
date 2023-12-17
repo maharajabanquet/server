@@ -80,7 +80,8 @@ const BookingSchema = mongoose.Schema({
     },
     djType: {
         type: String
-    }
+    },
+    payment_history: [],
 })
 
 module.exports = mongoose.model('Booking', BookingSchema)
