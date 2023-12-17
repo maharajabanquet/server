@@ -8,6 +8,7 @@ const CashInflowSchema = mongoose.Schema({
   amount: Number,
   remarks: String,
   is_booking: Boolean,
+  submitted_by: String,
   cdt: {type: Date, default: Date.now},
 })
 CashInflowSchema.plugin(mongoosePaginate);
