@@ -24,6 +24,10 @@ const EnquirySchema = mongoose.Schema({
     timestamp: {
         type: Date,
         default: Date.now
+    },
+    is_public: {
+        type: Boolean,
+        required: true,
     }
 })
 EnquirySchema.plugin(mongoosePaginate);

@@ -31,7 +31,8 @@ router.post('/add-enquiry', (req, res) => {
        "lastName": req.body.lastName,
        "phoneNumber": req.body.phoneNumber,
        "address": req.body.address,
-       "BookingDate": req.body.BookingDate
+       "BookingDate": req.body.BookingDate,
+       "is_public": req.body.is_public
     });
    add_enquiry.save().then(data => {
     Config.findOne({}, function(err, result) {
@@ -40,6 +41,7 @@ router.post('/add-enquiry', (req, res) => {
      
    })
    .catch(err => {
+    console.log(err);
        res.status(503).json({'error': 'Internal Server Error'})
    })
 })
