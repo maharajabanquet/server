@@ -12,7 +12,7 @@ const jwt = require("jsonwebtoken");
 const morgan = require("morgan");
 app.use(morgan('dev'));
 
-
+const whatspp = require("./thirdparty/whatsappweb");
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
@@ -21,6 +21,13 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+const whatsAppInstance = new whatspp()
+whatsAppInstance.run()
+whatsAppInstance.generateQR()
+whatsAppInstance.authenticate()
+whatsAppInstance.clientReady()
+whatsAppInstance.wishBaby()
 
 
 // Import Routes

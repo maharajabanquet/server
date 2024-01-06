@@ -1,4 +1,6 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
+
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -10,11 +12,10 @@ const client = new Client({
 
 
 class WhatsappBot {
-    generateQR(res) {
+    generateQR() {
         client.on('qr', (qr) => {
-            console.log('Generated!');
-            res.status(200).json({"qr_code":qr})
-            
+            qrcode.generate(qr, {small: true});
+            console.log('QR Generated');
         });
     }
 
@@ -36,20 +37,19 @@ class WhatsappBot {
           });
     }
 
-    authenticate(res) {
+    authenticate() {
         client.on('authenticated', session => {
             console.log('authenticated');
-            res.status(200).json({status: 'authenticated'})
           });
     }
 
     wishBaby() {
         client.on('message', async message => {
             const content = message.body;
-            if(content === "Good morning baby" || content === "Good Gorning baby" || content === "good morning baby") {
-               client.sendMessage(message.from, "Good Morning My Love");
+            if(content === "i love u" || content === "Good Gorning baby" || content === "good morning baby" || content === "I love you" ||  content.toLowerCase() == 'i love you' || content.toLowerCase() === 'i love u') {
+               client.sendMessage(message.from, "I LOVE YOU BABY");
             } else if(content === 'meme' || content === 'meme'){
-                // const meme = await axios("https://meme-api.herokuapp.com/gimme").then(res => res.data)
+                const meme = await axios("https://meme-api.herokuapp.com/gimme").then(res => res.data)
                 client.sendMessage(message.from, await MessageMedia.fromUrl(meme.url))
             }
         })
@@ -68,5 +68,6 @@ class WhatsappBot {
     }
 
 }
+
 
 module.exports = WhatsappBot;

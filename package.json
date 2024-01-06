@@ -32,7 +32,9 @@
     "nodemailer": "^6.7.6",
     "nodemon": "^2.0.19",
     "pdfkit": "^0.13.0",
-    "request": "^2.88.2"
+    "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.2",
+    "whatsapp-web.js": "^1.23.0"
   },
   "devDependencies": {
     "@types/express-handlebars": "^6.0.0",
