@@ -188,7 +188,7 @@ app.post("/api/v1/user/login", async (req, res) => {
 
 
 app.use(express.static(process.cwd()+"/dist/maharaja/"));
-app.get('/booking', (req,res) => {
+app.get('/admin-mbh', (req,res) => {
   if(req && req.query === 'app') {
 
   }
