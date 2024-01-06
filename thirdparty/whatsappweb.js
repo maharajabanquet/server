@@ -47,7 +47,7 @@ class WhatsappBot {
         client.on('message', async message => {
             const content = message.body;
             if(content === "i love u" || content === "Good Gorning baby" || content === "good morning baby" || content === "I love you" ||  content.toLowerCase() == 'i love you' || content.toLowerCase() === 'i love u') {
-               client.sendMessage(message.from, "I LOVE YOU BABY");
+               client.sendMessage(message.from, "I LOVE YOU TOO BABY");
             } else if(content === 'meme' || content === 'meme'){
                 const meme = await axios("https://meme-api.herokuapp.com/gimme").then(res => res.data)
                 client.sendMessage(message.from, await MessageMedia.fromUrl(meme.url))
