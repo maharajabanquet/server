@@ -106,7 +106,6 @@ p {
 /*===== All Button Style =====*/
 .main-btn {
   display: inline-block;
-  
   font-weight: 600;
   text-align: center;
   white-space: nowrap;
@@ -119,7 +118,7 @@ p {
   padding: 0 30px;
   font-size: 16px;
   line-height: 48px;
-  color: #EB3656;
+  color: #fff;
   cursor: pointer;
   z-index: 5;
   -webkit-transition: all 0.4s ease-out 0s;
