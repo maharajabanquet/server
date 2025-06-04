@@ -64,6 +64,7 @@ const AppCashFlow = require('./routes/appcashflow');
 const Secuirty = require('./routes/security');
 const Batuwa = require('./routes/batuwa');
 const CashInFlow2024_25 = require('./routes/appCashInFlow_2024_25');
+const iplant = require('./iplant');
 
 
 
@@ -111,6 +112,8 @@ app.use('/api/v1/security', Secuirty)
 app.use('/api/v1/cash-in-flow', CashInFlowV1)
 app.use('/api/v1/batuwa', Batuwa)
 app.use('/api/v1/cashflow2024_25', CashInFlow2024_25)
+app.use('/api/v1/iplant', iplant)
+
 
 
 
@@ -225,10 +228,10 @@ mongoose.connect(
     process.env.DB_CONNECTION
     , (e) => {
         console.log(logSymbols.success, 'Database Connection Established...');
-        startServer();
+    startServer();
+
        
 });
-
 
 function startServer() {
     app.listen(process.env.PORT, function(request) {
