@@ -16,7 +16,7 @@ router.post('/plant-analyse', async (req, res) => {
   const prompt = req.body.prompt;
     let base64Image = await iplantModel.findOne({})
     base64Image = base64Image['base64Image']
-  console.log(prompt);
+    base64Image = 'data:image/png;base64,' + base64Image.toString()
   
    
   if (!base64Image) {
