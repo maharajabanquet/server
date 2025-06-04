@@ -13,10 +13,11 @@ const openai = new OpenAI({
     apiKey: process.env.openAPIKEY, // Make sure this is set in your env
   });
 router.post('/plant-analyse', async (req, res) => {
-  const prompt = req.body.prompt || "I have shared plant and the soil metrics can u tell me soil health along with plant name ?";
+  const prompt = req.body.prompt;
     let base64Image = await iplantModel.findOne({})
     base64Image = base64Image['base64Image']
-
+  console.log(prompt);
+  
    
   if (!base64Image) {
     return res.status(400).json({ error: "Image (base64) is required." });
