@@ -43,6 +43,10 @@ router.post('/plant-analyse', async (req, res) => {
     });
 
     const aiResponse = response.choices[0].message.content;
+    console.log("***********PLANT ANAYLSIS REPORT***********");
+    console.log(aiResponse);
+    console.log("***********END OF PLANT ANAYLSIS REPORT***********");
+    
     res.status(200).json({ message: aiResponse });
   } catch (error) {
     console.error("OpenAI API error:", error);
