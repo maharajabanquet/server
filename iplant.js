@@ -23,31 +23,35 @@ router.post('/plant-analyse', async (req, res) => {
     return res.status(400).json({ error: "Image (base64) is required." });
   }
 
-  try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o", // Vision model
-      messages: [
-        {
-          role: "user",
-          content: [
-            { type: "text", text: prompt },
-            {
-              type: "image_url",
-              image_url: {
-                url: base64Image,
-              },
-            },
-          ],
-        },
-      ],
-    });
 
-    const aiResponse = response.choices[0].message.content;
-    console.log("***********PLANT ANAYLSIS REPORT***********");
-    console.log(aiResponse);
-    console.log("***********END OF PLANT ANAYLSIS REPORT***********");
+  console.log(prompt);
+  
+  try {
+    // const response = await openai.chat.completions.create({
+    //   model: "gpt-4o", // Vision model
+    //   messages: [
+    //     {
+    //       role: "user",
+    //       content: [
+    //         { type: "text", text: prompt },
+    //         {
+    //           type: "image_url",
+    //           image_url: {
+    //             url: base64Image,
+    //           },
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // });
+
+    // const aiResponse = response.choices[0].message.content;
+    // console.log("***********PLANT ANAYLSIS REPORT***********");
+    // console.log(aiResponse);
+    // console.log("***********END OF PLANT ANAYLSIS REPORT***********");
     
-    res.status(200).json({ message: aiResponse });
+    // res.status(200).json({ message: aiResponse });
+    res.status(200).json({ message: '' });
   } catch (error) {
     console.error("OpenAI API error:", error);
     res.status(500).json({ error: "Something went wrong with OpenAI." });
