@@ -26,8 +26,6 @@ router.post('/plant-analyse', async (req, res) => {
     Salt Level: ${payload.salt_level},
     DHT Temperature: ${payload.dht_temperature},
     DHT Humidity: ${payload.dht_humidity}
-
-    also please reply one by one proper format
   `
   console.log(prompt);
   
@@ -64,7 +62,10 @@ router.post('/plant-analyse', async (req, res) => {
     console.log("***********PLANT ANAYLSIS REPORT***********");
     console.log(aiResponse);
     console.log("***********END OF PLANT ANAYLSIS REPORT***********");
-    mail(aiResponse, base64Image)
+    const htmlContent = aiResponse
+  .replace(/\n/g, '<br>')          // newline to <br>
+  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');  // bold markdown to <strong>
+    mail(htmlContent, base64Image)
     res.status(200).json({ message: aiResponse });
     res.status(200).json({ message: '' });
   } catch (error) {
