@@ -31,11 +31,11 @@ router.post('/plant-analyse', async (req, res) => {
   
     let base64Image = await iplantModel.findOne({})
     base64Image = base64Image['base64Image']
-    let tmp = base64Image['base64Image']
-    base64Image = 'data:image/png;base64,' + base64Image.toString()
+   
+    aiBase64Image = 'data:image/png;base64,' + base64Image.toString()
   
    
-  if (!base64Image) {
+  if (!aiBase64Image) {
     return res.status(400).json({ error: "Image (base64) is required." });
   }
   
@@ -50,7 +50,7 @@ router.post('/plant-analyse', async (req, res) => {
             {
               type: "image_url",
               image_url: {
-                url: base64Image,
+                url: aiBase64Image,
               },
             },
           ],
@@ -62,7 +62,7 @@ router.post('/plant-analyse', async (req, res) => {
     console.log("***********PLANT ANAYLSIS REPORT***********");
     console.log(aiResponse);
     console.log("***********END OF PLANT ANAYLSIS REPORT***********");
-    mail(aiResponse, tmp)
+    mail(aiResponse, base64Image)
     res.status(200).json({ message: aiResponse });
     res.status(200).json({ message: '' });
   } catch (error) {
@@ -94,7 +94,8 @@ router.post('/capture-base64', async(req, res) => {
 
 
 async function mail(context, base64) {
-  console.log(context);
+  console.log("base64");
+  
   console.log(base64);
   
   
