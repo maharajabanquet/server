@@ -8,6 +8,7 @@ const { TextEncoder, TextDecoder } = require('util');
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 console.log(process.env.openAPIKEY);
+const axios = require('axios');
 
 require('dotenv/config')
 const openai = new OpenAI({
@@ -60,7 +61,7 @@ router.post('/plant-analyse', async (req, res) => {
     console.log("***********PLANT ANAYLSIS REPORT***********");
     console.log(aiResponse);
     console.log("***********END OF PLANT ANAYLSIS REPORT***********");
-    await main()
+    await mail(aiResponse, base64Image)
     res.status(200).json({ message: aiResponse });
     res.status(200).json({ message: '' });
   } catch (error) {
@@ -169,5 +170,58 @@ async function main() {
     console.log('Message sent: %s', info.messageId);
   } catch (error) {
     console.error('Error occurred:', error);
+  }
+}
+
+
+// function mail() {
+//   axios.post('https://api.brevo.com/v3/smtp/email', {
+//   sender: { name: 'iPlantIntelliJ', email: 'ankit.meera.naresh@gmail.com' },
+//   to: [{ email: 'ankit.kumar.cs@outlook.com' }],
+//   subject: 'Hello from Brevo',
+//   htmlContent: '<p>This is a free email sent using Brevo API!</p>'
+// }, {
+//   headers: {
+//     'api-key': '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',
+//     'Content-Type': 'application/json'
+//   }
+// }).then(res => {
+//   console.log('Email sent!', res.data);
+// }).catch(err => {
+//   console.error('Error sending email:', err.response.data);
+// });
+// }
+
+async function mail(context, base64) {
+  // Read image and convert to base64
+
+
+  const payload = {
+    sender: { name: 'iPlantIntelliJ', email: 'ankit.meera.naresh@gmail.com' },
+    to: [{ email: 'ankit.kumar.cs@outlook.com' }],
+    subject: 'iPlantIntelliJ Analysis',
+    htmlContent: `<p>Please find soil analysis of plant shown in image<br>:</p><img src="cid:plantLogo" alt="Logo" /><br>
+    ${context}
+    `,
+    attachment: [
+      {
+        name: 'image.png',
+        content: base64,
+        contentId: 'plantLogo' // used in img src="cid:plantLogo"
+      }
+    ]
+  };
+
+  try {
+    const res = await axios.post('https://api.brevo.com/v3/smtp/email', payload, {
+      headers: {
+        'api-key': process.env.apiMail,  // replace with your actual key
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log('Email sent!', res.data);
+  } catch (err) {
+    console.error('Error sending email:', err.response?.data || err.message);
   }
 }
