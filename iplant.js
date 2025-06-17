@@ -26,6 +26,8 @@ router.post('/plant-analyse', async (req, res) => {
     Salt Level: ${payload.salt_level},
     DHT Temperature: ${payload.dht_temperature},
     DHT Humidity: ${payload.dht_humidity}
+
+    also please reply one by one proper format
   `
   console.log(prompt);
   
@@ -106,7 +108,7 @@ async function mail(context, base64) {
     sender: { name: 'iPlantIntelliJ', email: 'ankit.meera.naresh@gmail.com' },
     to: [{ email: 'ankit.kumar.cs@outlook.com' }],
     subject: 'iPlantIntelliJ Analysis',
-    htmlContent: `<p>Please find soil analysis of plant image attached in this mail<br>:</p>
+    htmlContent: `<p>Please find soil analysis of plant image attached in this mail<br></p>
    
     <br><br>
     ${context}
