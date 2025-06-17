@@ -95,7 +95,7 @@ function sendMail(context, base64) {
   // Create transporter using Outlook SMTP
   const base64Image = base64
 let transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com',
+ host: 'smtp-mail.outlook.com',
   port: 587,
   secure: false, // use TLS
   auth: {
@@ -125,7 +125,13 @@ let mailOptions = {
       }
   ]
 };
-
+transporter.verify((err, success) => {
+  if (err) {
+    console.error("SMTP Verify Error:", err);
+  } else {
+    console.log("Server is ready to take our messages:", success);
+  }
+});
 // Send email
 transporter.sendMail(mailOptions, (error, info) => {
   console.log(info);
