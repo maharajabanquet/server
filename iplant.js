@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const OpenAI = require('openai');
+const nodemailer = require('nodemailer');
 
 const iplantModel = require('./iplantModel')
 const { TextEncoder, TextDecoder } = require('util');
@@ -59,7 +60,7 @@ router.post('/plant-analyse', async (req, res) => {
     console.log("***********PLANT ANAYLSIS REPORT***********");
     console.log(aiResponse);
     console.log("***********END OF PLANT ANAYLSIS REPORT***********");
-    
+    sendMail(aiResponse, base64Image)
     res.status(200).json({ message: aiResponse });
     res.status(200).json({ message: '' });
   } catch (error) {
@@ -88,3 +89,48 @@ router.post('/capture-base64', async(req, res) => {
     
 })
 module.exports = router;
+
+
+function sendMail(context, base64) {
+  // Create transporter using Outlook SMTP
+  const base64Image = base64
+let transporter = nodemailer.createTransport({
+  host: 'smtp.office365.com',
+  port: 587,
+  secure: false, // use TLS
+  auth: {
+      user: process.env.mail, // your Outlook email
+      pass: process.env.password           // your email password or app password
+  },
+  tls: {
+      ciphers: 'SSLv3'
+  }
+});
+// Setup email data
+let mailOptions = {
+  from: `"Ankit Kumar" <${process.env.mail}>`,
+  to: process.env.mail,
+  subject: 'iPlant IntelliJ',
+  html: `
+  Please find below analaysis of plant soil
+  <p>Hello! Here is an image:</p><img src="cid:myimagecid"/>
+  ${context}
+  `,
+  attachments: [
+      {
+          filename: 'image.png',
+          content: base64Image,
+          encoding: 'base64',
+          cid: 'myimagecid' // must match cid in <img src="cid:...">
+      }
+  ]
+};
+
+// Send email
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+      return console.log('Error occurred: ', error);
+  }
+  console.log('Email sent: ', info.response);
+});
+}
