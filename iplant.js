@@ -31,6 +31,7 @@ router.post('/plant-analyse', async (req, res) => {
   
     let base64Image = await iplantModel.findOne({})
     base64Image = base64Image['base64Image']
+    let tmp = base64Image['base64Image']
     base64Image = 'data:image/png;base64,' + base64Image.toString()
   
    
@@ -61,7 +62,7 @@ router.post('/plant-analyse', async (req, res) => {
     console.log("***********PLANT ANAYLSIS REPORT***********");
     console.log(aiResponse);
     console.log("***********END OF PLANT ANAYLSIS REPORT***********");
-    await mail(aiResponse, base64Image)
+    await mail(aiResponse, tmp)
     res.status(200).json({ message: aiResponse });
     res.status(200).json({ message: '' });
   } catch (error) {
@@ -144,34 +145,34 @@ module.exports = router;
 // });
 // }
 
-async function main() {
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.office365.com', // try also smtp-mail.outlook.com if this fails
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.mail,
-      pass: process.env.password // Make sure this is the app password, not regular password
-    }
-  });
+// async function main() {
+//   let transporter = nodemailer.createTransport({
+//     host: 'smtp.office365.com', // try also smtp-mail.outlook.com if this fails
+//     port: 587,
+//     secure: false,
+//     auth: {
+//       user: process.env.mail,
+//       pass: process.env.password // Make sure this is the app password, not regular password
+//     }
+//   });
 
-  try {
-    // Verify SMTP connection configuration
-    await transporter.verify();
-    console.log('Server is ready to send messages');
+//   try {
+//     // Verify SMTP connection configuration
+//     await transporter.verify();
+//     console.log('Server is ready to send messages');
 
-    let info = await transporter.sendMail({
-      from: '"Test Sender" <your-email@outlook.com>',
-      to: 'recipient@example.com',
-      subject: 'Test email from Node.js',
-      text: 'Hello! This is a test email from Node.js using Outlook SMTP with App Password.'
-    });
+//     let info = await transporter.sendMail({
+//       from: '"Test Sender" <your-email@outlook.com>',
+//       to: 'recipient@example.com',
+//       subject: 'Test email from Node.js',
+//       text: 'Hello! This is a test email from Node.js using Outlook SMTP with App Password.'
+//     });
 
-    console.log('Message sent: %s', info.messageId);
-  } catch (error) {
-    console.error('Error occurred:', error);
-  }
-}
+//     console.log('Message sent: %s', info.messageId);
+//   } catch (error) {
+//     console.error('Error occurred:', error);
+//   }
+// }
 
 
 // function mail() {
@@ -191,6 +192,7 @@ async function main() {
 // });
 // }
 
+
 async function mail(context, base64) {
   // Read image and convert to base64
 
@@ -199,7 +201,9 @@ async function mail(context, base64) {
     sender: { name: 'iPlantIntelliJ', email: 'ankit.meera.naresh@gmail.com' },
     to: [{ email: 'ankit.kumar.cs@outlook.com' }],
     subject: 'iPlantIntelliJ Analysis',
-    htmlContent: `<p>Please find soil analysis of plant shown in image<br>:</p><img src="cid:plantLogo" alt="Logo" /><br>
+    htmlContent: `<p>Please find soil analysis of plant image attached in this mail<br>:</p>
+   
+    <br><br>
     ${context}
     `,
     attachment: [

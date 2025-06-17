@@ -8,6 +8,7 @@ const cors = require('cors');
 const logSymbols = require('log-symbols');
 const morgan = require("morgan");
 app.use(morgan('dev'));
+const axios = require('axios');
 
 // const whatspp = require("./thirdparty/whatsappweb");
 app.use(bodyParser.json({limit: '50mb'}));
@@ -76,7 +77,3 @@ function startServer() {
         }
     });
 }
-
-
-
-
