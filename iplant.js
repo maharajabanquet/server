@@ -14,12 +14,22 @@ const openai = new OpenAI({
   });
 router.post('/plant-analyse', async (req, res) => {
   const payload = req.body;
+  // {
+  //   soil_moisture: 15,
+  //   salt_level: 0,
+  //   battery_voltage: 5139.619,
+  //   dht_temperature: 27.8,
+  //   dht_humidity: 57
+  // }
   const prompt = `
     please take a look on plant and here is the soil metric please tell me the soil health also tell me the plant name
     \n 
     Metrics Below:
     ${payload}
-  
+    Soild Moisture: ${payload.soil_moisture},
+    Salt Level: ${payload.salt_level},
+    DHT Temperature: ${payload.dht_temperature},
+    DHT Humidity: ${payload.dht_humidity}
   `
   console.log(prompt);
   
