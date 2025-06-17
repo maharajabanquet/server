@@ -128,6 +128,8 @@ let mailOptions = {
 
 // Send email
 transporter.sendMail(mailOptions, (error, info) => {
+  console.log(info);
+  
   if (error) {
       return console.log('Error occurred: ', error);
   }
