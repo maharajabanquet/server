@@ -182,7 +182,6 @@ async function main() {
 //   htmlContent: '<p>This is a free email sent using Brevo API!</p>'
 // }, {
 //   headers: {
-//     'api-key': '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',
 //     'Content-Type': 'application/json'
 //   }
 // }).then(res => {
