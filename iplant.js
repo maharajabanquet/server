@@ -18,7 +18,7 @@ router.post('/plant-analyse', async (req, res) => {
   const payload = req.body;
  
   const prompt = `
-    please take a look on plant and here is the soil metric please tell me the soil health also tell me the plant name
+    please take a look on plant which i attached also identified is this indoor or outdoor and tell me and here is the soil metric please tell me the soil health also tell me the plant name
     \n 
     Metrics Below:
 
