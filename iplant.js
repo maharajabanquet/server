@@ -27,7 +27,7 @@ router.post('/plant-analyse', async (req, res) => {
     DHT Temperature: ${payload.dht_temperature},
     DHT Humidity: ${payload.dht_humidity}
   `
-  console.log(prompt);
+  console.log(payload);
   
     let base64Image = await iplantModel.findOne({})
     base64Image = base64Image['base64Image']
